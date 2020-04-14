@@ -98,12 +98,17 @@ namespace ThaiHoaiDu.Controllers
         public ActionResult ThanhToan()
         {
             int IDBan = int.Parse(Session["IDBAN"].ToString());
+            if (db.HoaDons.FirstOrDefault(t => t.MaBan == IDBan && t.TinhTrang == false) == null)
+            {
+                ViewBag.ThanhToanTrong = "Không có giá trị để thanh toán!";
+                return View();
+            }
             Session["banDAO"] = null;
             db.Bans.Find(IDBan).TinhTrang = 1;
             db.HoaDons.FirstOrDefault(t => t.MaBan == IDBan && t.TinhTrang == false).GioRa = DateTime.Now;
             db.HoaDons.FirstOrDefault(t => t.MaBan == IDBan && t.TinhTrang == false).TinhTrang = true;
             db.SaveChanges();
-            return Redirect(Request.UrlReferrer.ToString());
+            return Redirect("/QuanLy/Index");
         }
     }
 }

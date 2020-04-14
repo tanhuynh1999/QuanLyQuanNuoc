@@ -18,9 +18,38 @@
                     </div>
                 }
                 <span>Tổng tiền: @Model.Sum(t => t.ThanhTien).ToString("0.")</span>
-                <a href="@Url.Action("ThanhToan", "ThemMon")"><button style="color: green">Thanh Toán</button></a>
+                @if (Model.Count == 0)
+                {
+                    <input type="button" value="Thanh Toán" class="btn btn-primary" disabled />
+                }
+                else
+                {
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Thanh Toán
+                    </button>
+                }
             </div>
         </div>
     </div>
 </div>
 @Html.Action("SanPham", "ThemMon")
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+            </div>
+            <div class="modal-body">
+                Thanh toán thành công!
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("ThanhToan", "ThemMon")"><button type="button" class="btn btn-secondary" >OK</button></a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -7,8 +7,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Layout/QuanLy.cshtml";
     ThaiHoaiDu.Models.QuanLyQuanNuocEntities db = new ThaiHoaiDu.Models.QuanLyQuanNuocEntities();
-    int banTrong = db.Bans.Where(t => t.TinhTrang == 0).ToList().Count;
-    int banSD = db.Bans.Where(t => t.TinhTrang == 1).ToList().Count;
+    int banTrong = db.Bans.Where(t => t.TinhTrang == 1).ToList().Count;
+    int banSD = db.Bans.Where(t => t.TinhTrang == 0).ToList().Count;
 }
 <div class="inner-block">
     <!--market updates updates aa-->
