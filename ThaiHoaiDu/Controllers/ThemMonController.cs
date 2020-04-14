@@ -27,7 +27,7 @@ namespace ThaiHoaiDu.Controllers
         }
         public void ganSession(int IDBan)
         {
-            Session["banDAO"] = new List<banDAO>(); // khoi tao session ban tam 
+            Session["banDAO"] = new List<banDAO>(); // khoi tao session ban tam aa
             List<banDAO> temp = Session["banDAO"] as List<banDAO>;
             List<CTHD> cthd = db.CTHDs.Where(t => t.HoaDon.MaBan == IDBan && t.HoaDon.TinhTrang == false).ToList();
             if (cthd == null)
