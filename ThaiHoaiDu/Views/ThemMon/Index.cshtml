@@ -17,6 +17,8 @@
                         <span>Tên sản phẩm : @iten.TenSP || Số lượng: @iten.SoLuong || Đơn giá: @iten.DonGia || Tiền: @iten.ThanhTien</span>
                     </div>
                 }
+                <span>Tổng tiền: @Model.Sum(t => t.ThanhTien).ToString("0.")</span>
+                <a href="@Url.Action("ThanhToan", "ThemMon")"><button style="color: green">Thanh Toán</button></a>
             </div>
         </div>
     </div>

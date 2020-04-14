@@ -72,6 +72,7 @@ namespace ThaiHoaiDu.Controllers
                 db.HoaDons.Add(additemHD);
                 db.SaveChanges();
                 int maHD = (int)db.HoaDons.FirstOrDefault(t => t.MaBan == IDBan && t.TinhTrang == false).MaHD;
+                db.Bans.Find(IDBan).TinhTrang = 0;
                 CTHD additemCTHD = new CTHD()
                 {
                     MaHD = maHD,
@@ -94,10 +95,14 @@ namespace ThaiHoaiDu.Controllers
             }
             return Redirect(Request.UrlReferrer.ToString());
         }
-        public ActionResult ThanhToan(int IDBan)
+        public ActionResult ThanhToan()
         {
+            int IDBan = int.Parse(Session["IDBAN"].ToString());
             Session["banDAO"] = null;
+            db.Bans.Find(IDBan).TinhTrang = 1;
+            db.HoaDons.FirstOrDefault(t => t.MaBan == IDBan && t.TinhTrang == false).GioRa = DateTime.Now;
             db.HoaDons.FirstOrDefault(t => t.MaBan == IDBan && t.TinhTrang == false).TinhTrang = true;
+            db.SaveChanges();
             return Redirect(Request.UrlReferrer.ToString());
         }
     }
