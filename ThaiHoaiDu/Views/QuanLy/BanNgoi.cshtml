@@ -1,0 +1,34 @@
+﻿@using ThaiHoaiDu.Models;
+@model List<Ban>
+@{
+    var xanhLa = "darkgreen";
+    var den = "currentColor";
+    var t = "Có khách";
+    var f = "Trống";
+ }
+<div class="chit-chat-layer1" style="margin-top: -5%">
+    <!--inner block start here-->
+    <div class="inner-block">
+        <div class="product-block">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 product-grid">
+                    <div class="product-items">
+                        <div class="project-eff">
+                            <div id="nivo-lightbox-demo"> <p> <a href="images/pro1.jpg" data-lightbox-gallery="gallery1" id="nivo-lightbox-demo"><span class="rollover1"> </span> </a></p></div>
+                            <img class="img-responsive" src="~/Content/Layout/images/table-1928456_960_720.png" alt="">
+                        </div>
+                        <div class="produ-cost" style="background-color:@if (item.TinhTrang == true) { @xanhLa; } else { @den; } ">
+                            <h4 style="font-weight: bold;">BÀN @item.SoBan</h4>
+                            <h4><b><i class="fas fa-arrow-alt-circle-right">&nbsp;</i></b>@if (item.TinhTrang == true) { @t; } else { @f; }</h4>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!--inner block end here-->
+
+    <div class="clearfix"> </div>
+</div>

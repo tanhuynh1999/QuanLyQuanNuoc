@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/TrangChu/DangNhap.cshtml";
+}
+<!--Css-->
+<style>
+    .w3l-forms-23 {
+        background: url(../../Content/HinhAnh/phong-canh-nhat-ban--2.jpg) no-repeat top;
+    }
+</style>
+<!--Form đăng nhập-->
+<section class="w3l-forms-23">
+    <div class="forms23-block-hny">
+        <div class="wrapper">
+            <div class="d-grid forms23-grids">
+                <div class="form23">
+                    <div class="main-bg">
+                        <h6 class="sec-one">QUẢN LÝ</h6>
+                        <div class="speci-login first-look">
+                            <img src="~/Content/DangNhap/images/user.png" alt="" class="img-responsive">
+                        </div>
+                    </div>
+                    <div class="bottom-content">
+                        <form action="#" method="post">
+                            <input type="text" name="taikhoan" class="input-form" placeholder="Tài khoản"
+                                   required="required" />
+                            <input type="password" name="password" class="input-form"
+                                   placeholder="Mật khẩu" required="required" />
+                            <button type="submit" class="loginhny-btn btn">Đăng nhập</button>
+                        </form>
+                        <p>Quên mật khẩu? <a href="#">Lấy lại!</a></p>
+                        <b style="color: red; font-weight: bold">@ViewBag.ThongBao</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
