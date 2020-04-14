@@ -27,7 +27,10 @@ namespace ThaiHoaiDu.Models
     
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<NguoiDung> NguoiDungs { get; set; }
-        public virtual DbSet<Ban> Bans { get; set; }
         public virtual DbSet<Spham> Sphams { get; set; }
+        public virtual DbSet<DanhMuc> DanhMucs { get; set; }
+        public virtual DbSet<Ban> Bans { get; set; }
+        public virtual DbSet<CTHD> CTHDs { get; set; }
+        public virtual DbSet<HoaDon> HoaDons { get; set; }
     }
 }

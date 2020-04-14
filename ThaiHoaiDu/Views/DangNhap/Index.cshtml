@@ -1,5 +1,9 @@
 ﻿
 @{
+    if (Session["TaiKhoan"] != null)
+    {
+        Response.Redirect("/QuanLy/Index");
+    }
     ViewBag.Title = "Index";
     Layout = "~/Views/TrangChu/DangNhap.cshtml";
 }

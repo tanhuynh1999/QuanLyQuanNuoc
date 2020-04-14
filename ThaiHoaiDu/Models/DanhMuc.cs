@@ -12,19 +12,18 @@ namespace ThaiHoaiDu.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Ban
+    public partial class DanhMuc
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Ban()
+        public DanhMuc()
         {
-            this.HoaDons = new HashSet<HoaDon>();
+            this.Sphams = new HashSet<Spham>();
         }
     
-        public int MaBan { get; set; }
-        public Nullable<int> SoBan { get; set; }
-        public Nullable<int> TinhTrang { get; set; }
+        public int MaDanhMuc { get; set; }
+        public string TenDanhMuc { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HoaDon> HoaDons { get; set; }
+        public virtual ICollection<Spham> Sphams { get; set; }
     }
 }

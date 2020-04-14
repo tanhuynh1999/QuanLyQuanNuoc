@@ -14,10 +14,21 @@ namespace ThaiHoaiDu.Models
     
     public partial class Spham
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Spham()
+        {
+            this.CTHDs = new HashSet<CTHD>();
+        }
+    
         public int MaSanPham { get; set; }
         public string TenSanPham { get; set; }
         public Nullable<decimal> Gia { get; set; }
         public string Anh { get; set; }
         public Nullable<bool> PhanBiet { get; set; }
+        public Nullable<int> MaDanhMuc { get; set; }
+    
+        public virtual DanhMuc DanhMuc { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CTHD> CTHDs { get; set; }
     }
 }

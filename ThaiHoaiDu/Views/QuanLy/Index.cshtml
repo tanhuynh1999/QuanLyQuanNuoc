@@ -1,70 +1,77 @@
 ﻿
 @{
+    if (Session["TaiKhoan"] == null)
+    {
+        Response.Redirect("/DangNhap/Index");
+    }
     ViewBag.Title = "Index";
     Layout = "~/Views/Layout/QuanLy.cshtml";
+    ThaiHoaiDu.Models.QuanLyQuanNuocEntities db = new ThaiHoaiDu.Models.QuanLyQuanNuocEntities();
+    int banTrong = db.Bans.Where(t => t.TinhTrang == 0).ToList().Count;
+    int banSD = db.Bans.Where(t => t.TinhTrang == 1).ToList().Count;
 }
-    <div class="inner-block">
-        <!--market updates updates-->
-        <div class="market-updates">
-            <div class="col-md-4 market-update-gd">
-                <div class="market-update-block clr-block-1">
-                    <div class="col-md-8 market-update-left">
-                        <h3>0</h3>
-                        <h4>Bàn trống</h4>
-                        <p>Số bàn chưa có người</p>
-                    </div>
-                    <div class="col-md-4 market-update-right">
-                        <i class="fa fa-file-text-o"> </i>
-                    </div>
-                    <div class="clearfix"> </div>
+<div class="inner-block">
+    <!--market updates updates-->
+    <div class="market-updates">
+        <div class="col-md-4 market-update-gd">
+            <div class="market-update-block clr-block-1">
+                <div class="col-md-8 market-update-left">
+                    <h3>@banTrong</h3>
+                    <h4>Bàn trống</h4>
+                    <p>Số bàn chưa có người</p>
                 </div>
-            </div>
-            <div class="col-md-4 market-update-gd">
-                <div class="market-update-block clr-block-2">
-                    <div class="col-md-8 market-update-left">
-                        <h3>0</h3>
-                        <h4>Bàn đang dùng</h4>
-                        <p>Số bàn đã có người ngồi</p>
-                    </div>
-                    <div class="col-md-4 market-update-right">
-                        <i class="fa fa-eye"> </i>
-                    </div>
-                    <div class="clearfix"> </div>
+                <div class="col-md-4 market-update-right">
+                    <i class="fa fa-file-text-o"> </i>
                 </div>
+                <div class="clearfix"> </div>
             </div>
-            <div class="col-md-4 market-update-gd">
-                <div class="market-update-block clr-block-3">
-                    <div class="col-md-8 market-update-left">
-                        <h3>0 vnđ</h3>
-                        <h4>Doanh thu</h4>
-                        <p>Tổng doanh thu trong 1 ngày.</p>
-                    </div>
-                    <div class="col-md-4 market-update-right">
-                        <i class="fa fa-envelope-o"> </i>
-                    </div>
-                    <div class="clearfix"> </div>
+        </div>
+        <div class="col-md-4 market-update-gd">
+            <div class="market-update-block clr-block-2">
+                <div class="col-md-8 market-update-left">
+                    <h3>@banSD</h3>
+                    <h4>Bàn đang dùng</h4>
+                    <p>Số bàn đã có người ngồi</p>
                 </div>
+                <div class="col-md-4 market-update-right">
+                    <i class="fa fa-eye"> </i>
+                </div>
+                <div class="clearfix"> </div>
             </div>
-            <div class="clearfix"> </div>
         </div>
-        <!--market updates end here-->
-        <!--mainpage chit-chating-->
-        @Html.Action("BanNgoi", "QuanLy")
-        <!--main page chit chating end here-->
-        <!--main page chart start here-->
-        <div class="main-page-charts">
-
+        <div class="col-md-4 market-update-gd">
+            <div class="market-update-block clr-block-3">
+                <div class="col-md-8 market-update-left">
+                    <h3>0 vnđ</h3>
+                    <h4>Doanh thu</h4>
+                    <p>Tổng doanh thu trong 1 ngày.</p>
+                </div>
+                <div class="col-md-4 market-update-right">
+                    <i class="fa fa-envelope-o"> </i>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
         </div>
-        <!--main page chart layer2-->
-        <div class="chart-layer-2">
-
-
-
-            <div class="clearfix"> </div>
-        </div>
-
-        <!--climate start here-->
-        <!--climate end here-->
+        <div class="clearfix"> </div>
     </div>
+    <!--market updates end here-->
+    <!--mainpage chit-chating-->
+    @Html.Action("BanNgoi", "QuanLy")
+    <!--main page chit chating end here-->
+    <!--main page chart start here-->
+    <div class="main-page-charts">
+
+    </div>
+    <!--main page chart layer2-->
+    <div class="chart-layer-2">
+
+
+
+        <div class="clearfix"> </div>
+    </div>
+
+    <!--climate start here-->
+    <!--climate end here-->
+</div>
 
 

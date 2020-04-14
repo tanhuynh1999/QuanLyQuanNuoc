@@ -1,0 +1,24 @@
+﻿@using ThaiHoaiDu.DAO;
+@model List<banDAO>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/QuanLy.cshtml";
+}
+
+<h2>Index</h2>
+<div class="chit-chat-layer1">
+    <div class="inner-block">
+        <div class="product-block">
+            <div class="pro-head">
+                <h5> danh sach món</h5>
+                @foreach (var iten in Model)
+                {
+                    <div>
+                        <span>Tên sản phẩm : @iten.TenSP || Số lượng: @iten.SoLuong || Đơn giá: @iten.DonGia || Tiền: @iten.ThanhTien</span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Action("SanPham", "ThemMon")

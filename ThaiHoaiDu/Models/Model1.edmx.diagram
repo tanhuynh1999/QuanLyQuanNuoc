@@ -7,8 +7,15 @@
       <Diagram DiagramId="89281b712dc34b0fb9531a0a984e8c19" Name="Diagram1">
         <EntityTypeShape EntityType="QuanLyQuanNuocModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyQuanNuocModel.NguoiDung" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="QuanLyQuanNuocModel.Ban" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="QuanLyQuanNuocModel.Spham" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="QuanLyQuanNuocModel.DanhMuc" Width="1.5" PointX="1.125" PointY="7.125" />
+        <AssociationConnector Association="QuanLyQuanNuocModel.FK_Spham_DanhMuc" />
+        <EntityTypeShape EntityType="QuanLyQuanNuocModel.Ban" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="QuanLyQuanNuocModel.CTHD" Width="1.5" PointX="5.625" PointY="4" />
+        <EntityTypeShape EntityType="QuanLyQuanNuocModel.HoaDon" Width="1.5" PointX="3.375" PointY="8" />
+        <AssociationConnector Association="QuanLyQuanNuocModel.FK_CTHD_HoaDon" />
+        <AssociationConnector Association="QuanLyQuanNuocModel.FK_CTHD_Spham" />
+        <AssociationConnector Association="QuanLyQuanNuocModel.FK_HoaDon_Ban" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

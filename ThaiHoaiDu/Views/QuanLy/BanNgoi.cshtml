@@ -15,12 +15,12 @@
                 <div class="col-md-3 product-grid">
                     <div class="product-items">
                         <div class="project-eff">
-                            <div id="nivo-lightbox-demo"> <p> <a href="images/pro1.jpg" data-lightbox-gallery="gallery1" id="nivo-lightbox-demo"><span class="rollover1"> </span> </a></p></div>
+                            <div id="nivo-lightbox-demo"> <p> <a href="@Url.Action("Index","ThemMon", new { IDBan = item.MaBan})" data-lightbox-gallery="gallery1" id="nivo-lightbox-demo"><span class="rollover1"> </span> </a></p></div>
                             <img class="img-responsive" src="~/Content/Layout/images/table-1928456_960_720.png" alt="">
                         </div>
-                        <div class="produ-cost" style="background-color:@if (item.TinhTrang == true) { @xanhLa; } else { @den; } ">
+                        <div class="produ-cost" style="background-color:@if (item.TinhTrang == 1) { @xanhLa; } else { @den; } ">
                             <h4 style="font-weight: bold;">BÀN @item.SoBan</h4>
-                            <h4><b><i class="fas fa-arrow-alt-circle-right">&nbsp;</i></b>@if (item.TinhTrang == true) { @t; } else { @f; }</h4>
+                            <h4><b><i class="fas fa-arrow-alt-circle-right">&nbsp;</i></b>@if (item.TinhTrang == 0) { @t; } else { @f; }</h4>
                         </div>
                     </div>
                 </div>

@@ -128,13 +128,24 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ChiTietBanController.cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\QuanLyController.cs" />
+    <Compile Include="Controllers\ThemMonController.cs" />
+    <Compile Include="DAO\banDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Ban.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CTHD.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DanhMuc.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HoaDon.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
@@ -1963,12 +1974,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\TrangChu\DangNhap.cshtml" />
     <Content Include="Views\DangNhap\Index.cshtml" />
     <Content Include="Views\Layout\QuanLy.cshtml" />
@@ -1977,6 +1982,9 @@
     <Content Include="Views\QuanLy\SanPham.cshtml" />
     <Content Include="Views\QuanLy\NhatKy.cshtml" />
     <Content Include="Views\QuanLy\NhatKyNgay.cshtml" />
+    <Content Include="Views\ChiTietBan\hienHD.cshtml" />
+    <Content Include="Views\ThemMon\Index.cshtml" />
+    <Content Include="Views\ThemMon\SanPham.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

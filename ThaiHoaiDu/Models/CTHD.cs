@@ -12,13 +12,14 @@ namespace ThaiHoaiDu.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class NguoiDung
+    public partial class CTHD
     {
-        public int MaNguoiDung { get; set; }
-        public string TenNguoiDung { get; set; }
-        public string TaiKhoan { get; set; }
-        public string MatKhau { get; set; }
-        public Nullable<bool> VaiTro { get; set; }
-        public Nullable<System.DateTime> NgayTao { get; set; }
+        public int MaHD { get; set; }
+        public int MaSP { get; set; }
+        public Nullable<int> SoLuong { get; set; }
+        public Nullable<decimal> ThanhTien { get; set; }
+    
+        public virtual HoaDon HoaDon { get; set; }
+        public virtual Spham Spham { get; set; }
     }
 }

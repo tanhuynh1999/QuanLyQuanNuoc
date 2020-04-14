@@ -12,19 +12,23 @@ namespace ThaiHoaiDu.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Ban
+    public partial class HoaDon
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Ban()
+        public HoaDon()
         {
-            this.HoaDons = new HashSet<HoaDon>();
+            this.CTHDs = new HashSet<CTHD>();
         }
     
+        public int MaHD { get; set; }
         public int MaBan { get; set; }
-        public Nullable<int> SoBan { get; set; }
-        public Nullable<int> TinhTrang { get; set; }
+        public Nullable<decimal> TongTien { get; set; }
+        public Nullable<System.DateTime> GioVao { get; set; }
+        public Nullable<System.DateTime> GioRa { get; set; }
+        public Nullable<bool> TinhTrang { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HoaDon> HoaDons { get; set; }
+        public virtual ICollection<CTHD> CTHDs { get; set; }
+        public virtual Ban Ban { get; set; }
     }
 }

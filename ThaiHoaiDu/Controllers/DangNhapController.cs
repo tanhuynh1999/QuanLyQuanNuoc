@@ -25,7 +25,7 @@ namespace ThaiHoaiDu.Controllers
             if (tk != null)
             {
                 Session["TaiKhoan"] = tk;
-                Response.Redirect("/QuanLy/Index");
+                return Redirect("/QuanLy/Index");
             }
             else
             {

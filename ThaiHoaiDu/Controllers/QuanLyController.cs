@@ -31,6 +31,5 @@ namespace ThaiHoaiDu.Controllers
         {
             return View();
         }
-
     }
 }
