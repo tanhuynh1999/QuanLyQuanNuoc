@@ -27,7 +27,7 @@ namespace ThaiHoaiDu.Controllers
         }
         public void ganSession(int IDBan)
         {
-            Session["banDAO"] = new List<banDAO>(); // khoi tao session ban tam 
+            Session["banDAO"] = new List<banDAO>(); // khoi tao session ban tam aa
             List<banDAO> temp = Session["banDAO"] as List<banDAO>;
             List<CTHD> cthd = db.CTHDs.Where(t => t.HoaDon.MaBan == IDBan && t.HoaDon.TinhTrang == false).ToList();
             if (cthd == null)
@@ -98,12 +98,17 @@ namespace ThaiHoaiDu.Controllers
         public ActionResult ThanhToan()
         {
             int IDBan = int.Parse(Session["IDBAN"].ToString());
+            if (db.HoaDons.FirstOrDefault(t => t.MaBan == IDBan && t.TinhTrang == false) == null)
+            {
+                ViewBag.ThanhToanTrong = "Không có giá trị để thanh toán!";
+                return View();
+            }
             Session["banDAO"] = null;
             db.Bans.Find(IDBan).TinhTrang = 1;
             db.HoaDons.FirstOrDefault(t => t.MaBan == IDBan && t.TinhTrang == false).GioRa = DateTime.Now;
             db.HoaDons.FirstOrDefault(t => t.MaBan == IDBan && t.TinhTrang == false).TinhTrang = true;
             db.SaveChanges();
-            return Redirect(Request.UrlReferrer.ToString());
+            return Redirect("/QuanLy/Index");
         }
     }
 }
