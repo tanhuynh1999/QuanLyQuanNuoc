@@ -1869,6 +1869,7 @@
     <Content Include="Content\Layout\js\nivo-lightbox.min.js" />
     <Content Include="Content\Layout\js\scripts.js" />
     <Content Include="Content\Layout\js\skycons.js" />
+    <Content Include="Content\SQL\script.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
