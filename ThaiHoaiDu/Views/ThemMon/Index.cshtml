@@ -11,12 +11,30 @@
         <div class="product-block">
             <div class="pro-head">
                 <h5> danh sach món</h5>
-                @foreach (var iten in Model)
-                {
-                    <div>
-                        <span>Tên sản phẩm : @iten.TenSP || Số lượng: @iten.SoLuong || Đơn giá: @iten.DonGia || Tiền: @iten.ThanhTien</span>
-                    </div>
-                }
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Tên</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Đơn giá</th>
+                            <th scope="col">Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var iten in Model)
+                        {
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>@iten.TenSP</td>
+                                <td>@iten.SoLuong</td>
+                                <td>@iten.DonGia vnđ</td>
+                                <td>@iten.ThanhTien vnđ</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+               
                 <span>Tổng tiền: @Model.Sum(t => t.ThanhTien).ToString("0.")</span>
                 @if (Model.Count == 0)
                 {

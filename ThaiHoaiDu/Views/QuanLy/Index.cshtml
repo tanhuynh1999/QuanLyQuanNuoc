@@ -17,13 +17,13 @@
             <div class="col-md-4 market-update-gd">
                 <div class="climate-grid3">
                     <div class="popular-brand">
-                        <div class="col-md-6 popular-bran-left">
-                            <h3>Popular</h3>
-                            <h4>Brand of this month</h4>
-                            <p> Duis aute irure  in reprehenderit.</p>
+                        <div class="col-md-6 popular-bran-right" style="background-color: darkgreen">
+                            <h3>@banSD</h3>
                         </div>
-                        <div class="col-md-6 popular-bran-right">
-                            <h3>Polo</h3>
+                        <div class="col-md-6 popular-bran-left">
+                            <h3 style="font-weight: bold">Bàn có người</h3>
+                            <h4>Hiện tại: <b style="color: red">@banSD bàn</b></h4>
+                            <p>Số bàn có người và cần tính tiền.</p>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
@@ -32,13 +32,13 @@
             <div class="col-md-4 market-update-gd">
                 <div class="climate-grid3">
                     <div class="popular-brand">
-                        <div class="col-md-6 popular-bran-left">
-                            <h3>Popular</h3>
-                            <h4>Brand of this month</h4>
-                            <p> Duis aute irure  in reprehenderit.</p>
+                        <div class="col-md-6 popular-bran-right" style="background-color: currentColor">
+                            <h3>@banTrong</h3>
                         </div>
-                        <div class="col-md-6 popular-bran-right">
-                            <h3>Polo</h3>
+                        <div class="col-md-6 popular-bran-left">
+                            <h3 style="font-weight: bold">Bàn trống</h3>
+                            <h4>Hiện tại: <b style="color: red">@banTrong bàn</b></h4>
+                            <p>Số bàn chưa có người.</p>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
@@ -46,32 +46,27 @@
             </div>
             <div class="col-md-4 market-update-gd">
                 <div class="climate-grid3">
-			<div class="popular-brand">
-				<div class="col-md-6 popular-bran-left">
-				     <h3>Popular</h3>
-				     <h4>Brand of this month</h4>
-				     <p> Duis aute irure  in reprehenderit.</p>
-				</div>
-				<div class="col-md-6 popular-bran-right">
-					<h3>Polo</h3>
-				</div>
-			  <div class="clearfix"></div>
-			</div>
-		</div>
-	</div>
-	<div class="clearfix"> </div>
+                    <div class="popular-brand">
+                        <div class="col-md-11 popular-bran-left">
+                            <h3>Tổng doanh thu 1 ngày</h3>
+                            <h4 id="hvn" style="font-size: 30px">
+                            </h4>
+                            <p style="font-size: 17px">0 vnđ.</p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
         </div>
         <!--market updates end here-->
         <!--mainpage chit-chating-->
         @Html.Action("BanNgoi", "QuanLy")
         <!--main page chit chating end here-->
         <!--main page chart start here-->
-        <div class="main-page-charts">
-            <div class="alert alert-danger">
-
-            </div>
-        </div>
         <!--main page chart layer2-->
+
+
         <div class="chart-layer-2">
 
 
@@ -83,4 +78,12 @@
         <!--climate end here-->
     </div>
 
+
+    <script>
+        var today = new Date();
+        var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
+        var dateTime = date;
+
+        document.getElementById("hvn").innerHTML = dateTime;
+    </script>
 
