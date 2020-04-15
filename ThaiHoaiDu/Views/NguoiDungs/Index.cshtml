@@ -3,9 +3,9 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Layout/QuanLy.cshtml";
+    int idxoa = new int();
 }
 
-<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -42,17 +42,42 @@
             @Html.DisplayFor(modelItem => item.MatKhau)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.VaiTro)
+            @if(item.VaiTro == true)
+            {
+                <span>Admin</span>
+            }
+            else
+            {
+                <span>Nhân viên</span>
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.NgayTao)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaNguoiDung }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaNguoiDung }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaNguoiDung })
+            <a href="@Url.Action("Edit", "NguoiDungs", new { id = item.MaNguoiDung})"><input type="button" value="Cập nhật" /></a>
+            <button type="button" class="btn btn-danger" name="bt" id="@item.MaNguoiDung" onclick="@{idxoa = item.MaNguoiDung; })" data-toggle="modal" data-target="#Xoa">
+                Xóa
+            </button>
         </td>
     </tr>
 }
 
 </table>
+
+<div class="modal fade" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+            </div>
+            <div class="modal-body">
+                Bạn chắc chắn muốn xóa?
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("DeleteConfirmed","NguoiDungs", new { id = idxoa})"><button type="button" class="btn btn-secondary">OK</button></a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -50,6 +50,7 @@ namespace ThaiHoaiDu.Controllers
         {
             if (ModelState.IsValid)
             {
+                nguoiDung.NgayTao = DateTime.Now;
                 db.NguoiDungs.Add(nguoiDung);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -89,30 +90,12 @@ namespace ThaiHoaiDu.Controllers
             return View(nguoiDung);
         }
 
-        // GET: NguoiDungs/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            NguoiDung nguoiDung = db.NguoiDungs.Find(id);
-            if (nguoiDung == null)
-            {
-                return HttpNotFound();
-            }
-            return View(nguoiDung);
-        }
-
-        // POST: NguoiDungs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             NguoiDung nguoiDung = db.NguoiDungs.Find(id);
             db.NguoiDungs.Remove(nguoiDung);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         protected override void Dispose(bool disposing)
