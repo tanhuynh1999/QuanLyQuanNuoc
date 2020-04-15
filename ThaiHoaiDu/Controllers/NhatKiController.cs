@@ -32,7 +32,7 @@ namespace ThaiHoaiDu.Controllers
             else if (id == 3)
             {
                 ViewBag.ID = "tất cả";
-                return PartialView(db.CTHDs.ToPagedList(pagenum, 10));
+                return PartialView(db.CTHDs.OrderByDescending(t => t.HoaDon.GioRa).ToPagedList(pagenum, 10));
             }
             ViewBag.id = 0;
             ViewBag.ID = "ngày";

@@ -8,6 +8,7 @@ using PagedList;
 using PagedList.Mvc;
 using System.Net;
 using System.Data.Entity;
+using System.IO;
 
 namespace ThaiHoaiDu.Controllers
 {
@@ -41,15 +42,27 @@ namespace ThaiHoaiDu.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaSanPham,TenSanPham,Gia,Anh,PhanBiet,MaDanhMuc")] Spham spham)
+        public ActionResult Create([Bind(Include = "MaSanPham,TenSanPham,Gia,Anh,PhanBiet,MaDanhMuc")] Spham spham, HttpPostedFileBase fileimg)
         {
             if (ModelState.IsValid)
             {
+                // add file img
+                var img = Path.GetFileName(fileimg.FileName);
+                var pathimg = Path.Combine(Server.MapPath("~/Content/Layout/images"), img);
+                if (fileimg == null)
+                {
+                    ViewBag.Img = "Chose images";
+                    return View();
+                }
+                else if (System.IO.File.Exists(pathimg))
+                    ViewBag.Img = "Images had exists";
+                else
+                    fileimg.SaveAs(pathimg);
+                spham.Anh = fileimg.FileName;
                 db.Sphams.Add(spham);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             ViewBag.MaDanhMuc = new SelectList(db.DanhMucs, "MaDanhMuc", "TenDanhMuc", spham.MaDanhMuc);
             return View(spham);
         }

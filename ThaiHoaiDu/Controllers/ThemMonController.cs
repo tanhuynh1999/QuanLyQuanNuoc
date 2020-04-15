@@ -62,17 +62,25 @@ namespace ThaiHoaiDu.Controllers
                     TenSP = db.Sphams.Find(IDSP).TenSanPham
                 };
                 giohang.Add(ban);
-                HoaDon additemHD = new HoaDon()
+                if(giohang.Count == 1)
                 {
-                    GioVao = DateTime.Now,
-                    MaBan = IDBan,
-                    TinhTrang = false,
-                    TongTien = donGia * soLuong
-                };
-                db.HoaDons.Add(additemHD);
-                db.SaveChanges();
+                    HoaDon additemHD = new HoaDon()
+                    {
+                        GioVao = DateTime.Now,
+                        MaBan = IDBan,
+                        TinhTrang = false,
+                        TongTien = donGia * soLuong
+                    };
+                    db.HoaDons.Add(additemHD);
+                    db.SaveChanges();
+                    db.Bans.Find(IDBan).TinhTrang = 0;
+                }
+                else
+                {
+                    HoaDon hoaDon = db.HoaDons.FirstOrDefault(t => t.MaBan == IDBan && t.TinhTrang == false);
+                    hoaDon.TongTien += donGia * soLuong;
+                }
                 int maHD = (int)db.HoaDons.FirstOrDefault(t => t.MaBan == IDBan && t.TinhTrang == false).MaHD;
-                db.Bans.Find(IDBan).TinhTrang = 0;
                 CTHD additemCTHD = new CTHD()
                 {
                     MaHD = maHD,
@@ -93,6 +101,24 @@ namespace ThaiHoaiDu.Controllers
                 db.HoaDons.Find(maHD).TongTien += soLuong * donGia;
                 db.SaveChanges();
             }
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+        public ActionResult XoaSP(int idSP)
+        {
+            int IDBan = int.Parse(Session["IDBAN"].ToString());
+            HoaDon removehd = db.HoaDons.FirstOrDefault(t => t.MaBan == IDBan && t.TinhTrang == false);
+            CTHD removecthd = db.CTHDs.FirstOrDefault(t => t.MaSP == idSP && t.MaHD == removehd.MaHD);
+            removehd.TongTien -= removecthd.ThanhTien;
+            db.CTHDs.Remove(removecthd);
+            db.SaveChanges();
+            List<CTHD> cthd = db.CTHDs.Where(t => t.MaHD == removehd.MaHD).ToList();
+            if(cthd.Count == 0)
+            {
+                removehd.Ban.TinhTrang = 1;
+                db.HoaDons.Remove(removehd);
+                db.SaveChanges();
+            }
+            ganSession(IDBan);
             return Redirect(Request.UrlReferrer.ToString());
         }
         public ActionResult ThanhToan()

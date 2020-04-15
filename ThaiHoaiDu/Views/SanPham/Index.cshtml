@@ -14,7 +14,7 @@
         <div class="product-block">
             <div class="pro-head">
                 <h2>Sản phẩm - @ViewBag.TBSP</h2>
-                <a href="#"><button class="btn btn-danger">Thêm</button></a>
+                <a href="@Url.Action("Create", "SanPham")"><button class="btn btn-danger">Thêm</button></a>
                 @Html.Action("dsDanhMuc", "SanPham")
                 @foreach (var item in Model)
                 {
