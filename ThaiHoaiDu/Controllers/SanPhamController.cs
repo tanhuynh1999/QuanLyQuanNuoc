@@ -115,7 +115,6 @@ namespace ThaiHoaiDu.Controllers
             return View(spham);
         }
 
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             foreach(CTHD item in db.CTHDs.Where(t => t.MaSP == id).ToList())
@@ -126,7 +125,7 @@ namespace ThaiHoaiDu.Controllers
             Spham spham = db.Sphams.Find(id);
             db.Sphams.Remove(spham);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect(Request.UrlReferrer.ToString());
         }
     }
 }

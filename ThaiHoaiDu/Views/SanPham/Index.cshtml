@@ -7,6 +7,7 @@
     Layout = "~/Views/Layout/QuanLy.cshtml";
     var lon = " Lon";
     var ly = " Ly";
+    int idxoa = new int();
 }
 <div class="chit-chat-layer1">
     <!--inner block start here-->
@@ -23,7 +24,7 @@
                             <center>
                                 <br />
                                 <a href="@Url.Action("Edit", "SanPham", new { id = item.MaSanPham})"><input type="button" class="btn btn-danger" value="Cập nhật" /></a>
-                                <button type="button" class="btn btn-danger" name="bt" id="@item.MaSanPham" onclick="getID(this.id)" data-toggle="modal" data-target="#Xoa">
+                                <button type="button" class="btn btn-danger" name="bt" id="@item.MaSanPham" onclick="@{idxoa = item.MaSanPham; })" data-toggle="modal" data-target="#Xoa">
                                     Xóa
                                 </button>
                             </center>
@@ -62,15 +63,6 @@
         @Html.PagedListPager(Model, Page => Url.Action("Index", new { id = idSP, Page = Page }))
     </div>
 </center>
-@{ object idremove = 0;}
-<script>
-    class pt(){
-
-    }
-    function getID(id) {
-        @idremove = id; 
-    }
-</script>
 
 <div class="modal fade" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -82,7 +74,7 @@
                 Bạn chắc chắn muốn xóa
             </div>
             <div class="modal-footer">
-                <a href="@Url.Action("DeleteConfirm","SanPham", new { id = @idremove})"><button type="button" class="btn btn-secondary">OK</button></a>
+                <a href="@Url.Action("DeleteConfirmed","SanPham", new { id = idxoa})"><button type="button" class="btn btn-secondary">OK</button></a>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             </div>
         </div>
