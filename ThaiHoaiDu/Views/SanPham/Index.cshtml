@@ -20,6 +20,13 @@
                 {
                     <div class="col-md-3 product-grid">
                         <div class="product-items">
+                            <center>
+                                <br />
+                                <a href="@Url.Action("Edit", "SanPham", new { id = item.MaSanPham})"><input type="button" class="btn btn-danger" value="Cập nhật" /></a>
+                                <button type="button" class="btn btn-danger" name="bt" id="@item.MaSanPham" onclick="getID(this.id)" data-toggle="modal" data-target="#Xoa">
+                                    Xóa
+                                </button>
+                            </center>
                             <div class="project-eff">
                                 <div id="nivo-lightbox-demo"> <p> <a href="images/pro1.jpg" data-lightbox-gallery="gallery1" id="nivo-lightbox-demo"><span class="rollover1"> </span> </a></p></div>
                                 <img class="img-responsive" src="~/Content/Layout/images/@item.Anh" alt="" style="width: 100%; height: 250px">
@@ -55,4 +62,29 @@
         @Html.PagedListPager(Model, Page => Url.Action("Index", new { id = idSP, Page = Page }))
     </div>
 </center>
+@{ object idremove = 0;}
+<script>
+    class pt(){
 
+    }
+    function getID(id) {
+        @idremove = id; 
+    }
+</script>
+
+<div class="modal fade" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+            </div>
+            <div class="modal-body">
+                Bạn chắc chắn muốn xóa
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("DeleteConfirm","SanPham", new { id = @idremove})"><button type="button" class="btn btn-secondary">OK</button></a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

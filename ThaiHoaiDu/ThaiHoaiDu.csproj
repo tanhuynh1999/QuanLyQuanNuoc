@@ -2001,6 +2001,7 @@
     <Content Include="Views\Sphams\Edit.cshtml" />
     <Content Include="Views\Sphams\Index.cshtml" />
     <Content Include="Views\SanPham\Create.cshtml" />
+    <Content Include="Views\SanPham\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

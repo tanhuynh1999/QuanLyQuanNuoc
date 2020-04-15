@@ -88,10 +88,25 @@ namespace ThaiHoaiDu.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaSanPham,TenSanPham,Gia,Anh,PhanBiet,MaDanhMuc")] Spham spham)
+        public ActionResult Edit([Bind(Include = "MaSanPham,TenSanPham,Gia,Anh,PhanBiet,MaDanhMuc")] Spham spham, HttpPostedFileBase fileimg)
         {
             if (ModelState.IsValid)
             {
+                if(fileimg != null)
+                {
+                    var img = Path.GetFileName(fileimg.FileName);
+                    var pathimg = Path.Combine(Server.MapPath("~/Content/Layout/images"), img);
+                    if (fileimg == null)
+                    {
+                        ViewBag.Img = "Chose images";
+                        return View();
+                    }
+                    else if (System.IO.File.Exists(pathimg))
+                        ViewBag.Img = "Images had exists";
+                    else
+                        fileimg.SaveAs(pathimg);
+                    spham.Anh = fileimg.FileName;
+                }    
                 db.Entry(spham).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -100,26 +115,14 @@ namespace ThaiHoaiDu.Controllers
             return View(spham);
         }
 
-        // GET: Sphams/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Spham spham = db.Sphams.Find(id);
-            if (spham == null)
-            {
-                return HttpNotFound();
-            }
-            return View(spham);
-        }
-
-        // POST: Sphams/Delete/5
-        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            foreach(CTHD item in db.CTHDs.Where(t => t.MaSP == id).ToList())
+            {
+                db.CTHDs.Remove(item);
+                db.SaveChanges();
+            }
             Spham spham = db.Sphams.Find(id);
             db.Sphams.Remove(spham);
             db.SaveChanges();

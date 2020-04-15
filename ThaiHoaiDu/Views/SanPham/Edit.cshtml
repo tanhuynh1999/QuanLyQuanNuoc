@@ -1,50 +1,51 @@
 ﻿@model ThaiHoaiDu.Models.Spham
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Layout/QuanLy.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
-@using (Html.BeginForm("Create","SanPham", FormMethod.Post, new { @enctype = "multipart/form-data"}))
+@using (Html.BeginForm("Edit", "SanPham", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <h4>Spham</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaSanPham)
+        @Html.HiddenFor(model => model.Anh)
+
         <div class="form-group">
             @Html.LabelFor(model => model.TenSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="text" name="TenSanPham" class="form-control" required />
+                <input type="text" name="TenSanPham" class="form-control" value="@Model.TenSanPham" required />
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Gia, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="number" name="Gia" class="form-control" required/>
+                <input type="number" name="Gia" class="form-control" value="@Model.Gia" required />
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Anh, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="fileimg" class="btn btn-danger" value="Chọn ảnh" required/>
+                <input type="file" name="fileimg" class="btn btn-danger" />
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.PhanBiet, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="col-md-10">
-                    <select name="PhanBiet" class="form-control">
-                        <option value="true">Lon</option>
-                        <option value="false">Ly</option>
-                    </select>
-                </div>
+                <select name="PhanBiet" class="form-control">
+                    <option value="true">Lon</option>
+                    <option value="false">Ly</option>
+                </select>
             </div>
         </div>
 
@@ -58,10 +59,9 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
-
 
