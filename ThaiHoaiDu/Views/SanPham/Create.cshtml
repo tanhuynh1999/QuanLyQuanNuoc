@@ -41,8 +41,10 @@
             @Html.LabelFor(model => model.PhanBiet, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.PhanBiet)
-                    @Html.ValidationMessageFor(model => model.PhanBiet, "", new { @class = "text-danger" })
+                    <select name="PhanBiet" class="form-control">
+                        <option value="true">Lon</option>
+                        <option value="false">Ly</option>
+                    </select>
                 </div>
             </div>
         </div>

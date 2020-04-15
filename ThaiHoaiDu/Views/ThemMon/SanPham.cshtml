@@ -1,8 +1,8 @@
 ﻿@using ThaiHoaiDu.Models;
 @model List<Spham>
 @{
-    var chai = " Chai";
     var lon = " Lon";
+    var ly = " Ly";
 }
 <div class="chit-chat-layer1">
     <!--inner block start here-->
@@ -28,7 +28,8 @@
                             </div>
                             <div class="produ-cost" style="border: 1px solid black; background-color: darkgreen">
                                 <h4>@item.TenSanPham</h4>
-                                <h5>@item.Gia vnđ/@if (item.PhanBiet == true){@chai;}else{@lon;}</h5>
+                                @{ float giaban = (float)item.Gia;}
+                                <h5>@giaban.ToString("#,##0") vnđ/@if (item.PhanBiet == true){@lon;}else{@ly;}</h5>
                             </div>
                         </div>
                     </div>

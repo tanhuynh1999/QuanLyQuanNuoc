@@ -5,8 +5,8 @@
 @{
     ViewBag.Title = "SanPham";
     Layout = "~/Views/Layout/QuanLy.cshtml";
-    var chai = " Chai";
     var lon = " Lon";
+    var ly = " Ly";
 }
 <div class="chit-chat-layer1">
     <!--inner block start here-->
@@ -27,11 +27,12 @@
                             <div class="produ-cost">
                                 <h4>@item.TenSanPham</h4>
                                 <h5>
-                                    @item.Gia vnđ/@if (item.PhanBiet == true)
-                                    {@chai;
+                                    @{ float giaban = (float)item.Gia;}
+                                    @giaban.ToString("#,##0") vnđ/@if (item.PhanBiet == true)
+                                    {@lon;
                                 }
                                 else
-                                {@lon;
+                                {@ly;
                             }
                                 </h5>
                             </div>
