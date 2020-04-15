@@ -59,7 +59,7 @@ namespace ThaiHoaiDu.Controllers
             return View(nguoiDung);
         }
 
-        // GET: NguoiDungs/Edit/5
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
