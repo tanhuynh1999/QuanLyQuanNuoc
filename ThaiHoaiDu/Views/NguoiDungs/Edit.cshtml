@@ -5,53 +5,61 @@
     Layout = "~/Views/Layout/QuanLy.cshtml";
 }
 
-<h2>Edit</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>NguoiDung</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.MaNguoiDung)
+<div class="inner-block">
+    <div class="product-block">
+        <div class="pro-head" style="width: 100%; height: 500px">
+            <center style="font-weight: bold"><h3><a href="/NguoiDungs"><i class="fas fa-chevron-circle-left"></i>&nbsp;</a>Cập nhật tài khoản nhân viên</h3><a href=""></a></center>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TenNguoiDung, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" name="TenNguoiDung" class="form-control" required value="@Model.TenNguoiDung" />
-            </div>
-        </div>
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.MaNguoiDung)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TaiKhoan, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" name="TaiKhoan" class="form-control" required value="@Model.TaiKhoan"/>
-            </div>
-        </div>
+                <div class="alert alert-danger" style="color: black">
+                    <div class="form-group">
+                        <b class="control-label col-md-2"><i class="fas fa-file-signature">&nbsp;</i>Tên nhân viên</b>
+                        <div class="col-md-10">
+                            <input type="text" name="TenNguoiDung" class="form-control" required value="@Model.TenNguoiDung" />
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MatKhau, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" name="MatKhau" class="form-control" required value="@Model.MatKhau"/>
-            </div>
-        </div>
+                    <div class="form-group">
+                        <b class="control-label col-md-2"><i class="fa fa-user">&nbsp;</i>Tài khoản</b>
+                        <div class="col-md-10">
+                            <input type="text" name="TaiKhoan" class="form-control" required value="@Model.TaiKhoan" />
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.VaiTro, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <select name="VaiTro" class="form-control">
-                    <option value="true">Admin</option>
-                    <option value="false">Nhân viên</option>
-                </select>
-            </div>
-        </div>
+                    <div class="form-group">
+                        <b class="control-label col-md-2"><i class="fas fa-key">&nbsp;</i>Mật khẩu</b>
+                        <div class="col-md-10">
+                            <input type="text" name="MatKhau" class="form-control" required value="@Model.MatKhau" />
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+                    <div class="form-group">
+                        <b class="control-label col-md-2"><i class="fas fa-adjust">&nbsp;</i>Vai trò</b>
+                        <div class="col-md-10">
+                            <select name="VaiTro" class="btn btn-danger">
+                                <option value="true">Admin</option>
+                                <option value="false">Nhân viên</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <center>
+                    <div class="form-group">
+                        <div class="">
+                            <input type="submit" value="Cập nhật" class="btn btn-danger" style="width: 20%; height: 50px" />
+                        </div>
+                    </div>
+                </center>
+             </div>
+            }
         </div>
     </div>
-}
+</div>   

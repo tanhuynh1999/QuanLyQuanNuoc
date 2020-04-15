@@ -113,7 +113,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--//skycons-icons-->
 </head>
 <body style="font-family: Arial;">
-    <div class="page-container sidebar-collapsed">
+    <div class="page-container">
         <div class="left-content">
             <div class="mother-grid-inner">
                 <!--header start here-->
@@ -199,10 +199,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="menu">
                 <ul id="menu">
-                    <li id="menu-home"><a href="/QuanLy/Index"><i class="fa fa-tachometer"></i><span>Trang chủ</span></a>
-                    <ul>
-                        <li id="menu-academico-avaliacoes"><a href="/QuanLy/Index">Trang chủ</a></li>
-                    </ul>
+                    <li id="menu-home">
+                        <a href="/QuanLy/Index"><i class="fa fa-tachometer"></i><span>Trang chủ</span></a>
+                        <ul>
+                            <li id="menu-academico-avaliacoes"><a href="/QuanLy/Index">Trang chủ</a></li>
+                        </ul>
                     </li>
                     @if (nd.VaiTro == true)
                     {
@@ -212,7 +213,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <li id="menu-academico-avaliacoes"><a href="/NhatKi/Index">Nhật ký</a></li>
                             </ul>
                         </li>
-                        <li><a href="charts.html"><i class="fa fa-bar-chart"></i><span>Thống kê</span></a>
+                        <li>
+                            <a href="charts.html"><i class="fa fa-bar-chart"></i><span>Thống kê</span></a>
                             <ul>
                                 <li id="menu-academico-avaliacoes"><a href="#">Thống kê</a></li>
                             </ul>
@@ -240,6 +242,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="clearfix"> </div>
     </div>
     <!--slide bar menu end here-->
+    <script>
+        var toggle = true;
+
+        $(".sidebar-icon").click(function () {
+            if (toggle) {
+                $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+                $("#menu span").css({ "position": "absolute" });
+            }
+            else {
+                $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+                setTimeout(function () {
+                    $("#menu span").css({ "position": "relative" });
+                }, 400);
+            }
+            toggle = !toggle;
+        });
+    </script>
     <script>
         var today = new Date();
         var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
