@@ -135,6 +135,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
+    <Compile Include="Controllers\NguoiDungsController.cs" />
     <Compile Include="Controllers\NhatKiController.cs" />
     <Compile Include="Controllers\QuanLyController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
@@ -2002,6 +2003,11 @@
     <Content Include="Views\Sphams\Index.cshtml" />
     <Content Include="Views\SanPham\Create.cshtml" />
     <Content Include="Views\SanPham\Edit.cshtml" />
+    <Content Include="Views\NguoiDungs\Create.cshtml" />
+    <Content Include="Views\NguoiDungs\Delete.cshtml" />
+    <Content Include="Views\NguoiDungs\Details.cshtml" />
+    <Content Include="Views\NguoiDungs\Edit.cshtml" />
+    <Content Include="Views\NguoiDungs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
