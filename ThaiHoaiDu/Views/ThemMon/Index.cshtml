@@ -5,69 +5,95 @@
     Layout = "~/Views/Layout/QuanLy.cshtml";
 }
 
-<h2>Index</h2>
-<div class="chit-chat-layer1">
     <div class="inner-block">
         <div class="product-block">
             <div class="pro-head">
-                <h5> Danh sach món</h5>
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">STT</th>
-                            <th scope="col">Tên</th>
-                            <th scope="col">Số lượng</th>
-                            <th scope="col">Đơn giá</th>
-                            <th scope="col">Thành tiền</th>
+                            <th scope="col"><center><i class="fas fa-beer">&nbsp;</i>Tên món</center></th>
+                            <th scope="col"><center><i class="fas fa-sort-numeric-up">&nbsp;</i>Số lượng</center></th>
+                            <th scope="col"><center><i class="fas fa-money-bill-wave">&nbsp;</i>Đơn giá</center></th>
+                            <th scope="col"><center><i class="fas fa-dollar-sign">&nbsp;</i>Thành tiền</center></th>
+                            <th scope="col"><center><i class="fas fa-trash-alt">&nbsp;</i>Xóa</center></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var iten in Model)
                         {
                             <tr>
-                                <th scope="row">1</th>
-                                <td>@iten.TenSP</td>
-                                <td>@iten.SoLuong</td>
-                                <td>@iten.DonGia vnđ</td>
-                                <td>@iten.ThanhTien vnđ</td>
-                                <td><a href="@Url.Action("XoaSP", "ThemMon", new { idSP = iten.IDSanPham})"><i class="fa fa-close"></i></a></td>
+                                <td><center>@iten.TenSP</center></td>
+                                <td><center>@iten.SoLuong</center></td>
+                                <td><center>@iten.DonGia vnđ</center></td>
+                                <td><center>@iten.ThanhTien vnđ</center></td>
+                                <td><center><a href="@Url.Action("XoaSP", "ThemMon", new { idSP = iten.IDSanPham})"><i class="fa fa-close"></i></a></center></td>
                             </tr>
                         }
                     </tbody>
                 </table>
-               
-                <span>Tổng tiền: @Model.Sum(t => t.ThanhTien).ToString("0.")</span>
-                @if (Model.Count == 0)
-                {
-                    <input type="button" value="Thanh Toán" class="btn btn-primary" disabled />
-                }
-                else
-                {
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Thanh Toán
-                    </button>
-                }
+
+                <center>
+                    <h3>
+                        Tổng tiền: <b style="color: red;">@Model.Sum(t => t.ThanhTien).ToString("0.")</b> VNĐ
+                    </h3>
+                    <br />
+                    @if (Model.Count == 0)
+                    {
+                        <input type="button" value="Thanh Toán" class="btn btn-primary" disabled style="width: 20%; height: 50px" />
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="width: 20%; height: 50px">
+                            Thanh Toán
+                        </button>
+                    }
+                </center>
             </div>
         </div>
-    </div>
-</div>
+    </div>       
 @Html.Action("SanPham", "ThemMon")
-
 <!-- Button trigger modal -->
-
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                <center><h3 style="color: red">Bạn có chắc muốn thanh toán?</h3></center>
             </div>
             <div class="modal-body">
-                Thanh toán thành công!
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col"><center><i class="fas fa-beer">&nbsp;</i>Tên món</center></th>
+                            <th scope="col"><center><i class="fas fa-sort-numeric-up">&nbsp;</i>Số lượng</center></th>
+                            <th scope="col"><center><i class="fas fa-money-bill-wave">&nbsp;</i>Đơn giá</center></th>
+                            <th scope="col"><center><i class="fas fa-dollar-sign">&nbsp;</i>Thành tiền</center></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var iten in Model)
+                        {
+                            <tr>
+                                <td><center>@iten.TenSP</center></td>
+                                <td><center>@iten.SoLuong</center></td>
+                                <td><center>@iten.DonGia vnđ</center></td>
+                                <td><center>@iten.ThanhTien vnđ</center></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <hr />
+                <center>
+                    <h3>
+                        Tổng tiền: <b style="color: red;">@Model.Sum(t => t.ThanhTien).ToString("0.")</b> VNĐ
+                    </h3>
+                </center>
             </div>
             <div class="modal-footer">
-                <a href="@Url.Action("ThanhToan", "ThemMon")"><button type="button" class="btn btn-secondary" >OK</button></a>
+                <a href="@Url.Action("ThanhToan", "ThemMon")">
+                    <button type="button" class="btn btn-primary">Thanh toán</button>
+                </a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Không thanh toán</button>
             </div>
         </div>
     </div>

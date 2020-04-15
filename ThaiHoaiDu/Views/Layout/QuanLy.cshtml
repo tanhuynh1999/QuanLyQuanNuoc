@@ -321,26 +321,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <!--heder end here-->
                 <!-- script-for sticky-nav -->
                 <script>
-		$(document).ready(function() {
-			 var navoffeset=$(".header-main").offset().top;
-			 $(window).scroll(function(){
-				var scrollpos=$(window).scrollTop();
-				if(scrollpos >=navoffeset){
-					$(".header-main").addClass("fixed");
-				}else{
-					$(".header-main").removeClass("fixed");
-				}
-			 });
+                    $(document).ready(function () {
+                        var navoffeset = $(".header-main").offset().top;
+                        $(window).scroll(function () {
+                            var scrollpos = $(window).scrollTop();
+                            if (scrollpos >= navoffeset) {
+                                $(".header-main").addClass("fixed");
+                            } else {
+                                $(".header-main").removeClass("fixed");
+                            }
+                        });
 
-		});
+                    });
                 </script>
                 <!-- /script-for sticky-nav -->
                 <!--inner block start here-->
-                @RenderBody()
+                <div class="chit-chat-layer1">
+                    @RenderBody()
+                </div>
                 <!--inner block end here-->
                 <!--copy rights start here-->
                 <div class="copyrights">
-                    
+
                 </div>
                 <!--COPY rights end here-->
             </div>
