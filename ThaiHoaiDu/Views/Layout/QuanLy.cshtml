@@ -1,7 +1,7 @@
 ﻿@{
     if(Session["TaiKhoan"] == null)
     {
-        Response.Redirect("/DangNhap/Index");
+        Response.Redirect("/QuanLy/Index");
     }
     Layout = null;
     ThaiHoaiDu.Models.NguoiDung nd = (ThaiHoaiDu.Models.NguoiDung)Session["TaiKhoan"];
