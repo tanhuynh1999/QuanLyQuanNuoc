@@ -128,8 +128,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ChiTietBanController.cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
+    <Compile Include="Controllers\NhatKiController.cs" />
     <Compile Include="Controllers\QuanLyController.cs" />
     <Compile Include="Controllers\ThemMonController.cs" />
     <Compile Include="DAO\banDAO.cs" />
@@ -1986,6 +1986,8 @@
     <Content Include="Views\ChiTietBan\hienHD.cshtml" />
     <Content Include="Views\ThemMon\Index.cshtml" />
     <Content Include="Views\ThemMon\SanPham.cshtml" />
+    <Content Include="Views\NhatKi\Index.cshtml" />
+    <Content Include="Views\NhatKi\doanhThuNgay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

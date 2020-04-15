@@ -38,7 +38,7 @@ namespace ThaiHoaiDu.Controllers
                 {
                     IDBan = (int)IDBan,
                     IDSanPham = item.MaSP,
-                    DonGia = (int)item.ThanhTien,
+                    DonGia = (int)item.Spham.Gia,
                     SoLuong = (int)item.SoLuong,
                     TenSP = item.Spham.TenSanPham
                 };
@@ -57,7 +57,7 @@ namespace ThaiHoaiDu.Controllers
                 {
                     IDBan = IDBan,
                     IDSanPham = IDSP,
-                    DonGia = (int)db.Sphams.Find(IDSP).Gia,
+                    DonGia = donGia,
                     SoLuong = soLuong,
                     TenSP = db.Sphams.Find(IDSP).TenSanPham
                 };
