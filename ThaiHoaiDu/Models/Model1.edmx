@@ -170,8 +170,12 @@
             <End Role="Spham" EntitySet="Sphams" />
           </AssociationSet>
           <EntitySet Name="Bans" EntityType="QuanLyQuanNuocModel.Ban" />
-          <EntitySet Name="CTHDs" EntityType="QuanLyQuanNuocModel.CTHD" />
           <EntitySet Name="HoaDons" EntityType="QuanLyQuanNuocModel.HoaDon" />
+          <AssociationSet Name="FK_HoaDon_Ban" Association="QuanLyQuanNuocModel.FK_HoaDon_Ban">
+            <End Role="Ban" EntitySet="Bans" />
+            <End Role="HoaDon" EntitySet="HoaDons" />
+          </AssociationSet>
+          <EntitySet Name="CTHDs" EntityType="QuanLyQuanNuocModel.CTHD" />
           <AssociationSet Name="FK_CTHD_HoaDon" Association="QuanLyQuanNuocModel.FK_CTHD_HoaDon">
             <End Role="HoaDon" EntitySet="HoaDons" />
             <End Role="CTHD" EntitySet="CTHDs" />
@@ -180,11 +184,7 @@
             <End Role="Spham" EntitySet="Sphams" />
             <End Role="CTHD" EntitySet="CTHDs" />
           </AssociationSet>
-          <AssociationSet Name="FK_HoaDon_Ban" Association="QuanLyQuanNuocModel.FK_HoaDon_Ban">
-            <End Role="Ban" EntitySet="Bans" />
-            <End Role="HoaDon" EntitySet="HoaDons" />
-          </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="NguoiDung">
           <Key>
             <PropertyRef Name="MaNguoiDung" />
@@ -238,6 +238,31 @@
           <Property Name="TinhTrang" Type="Int32" />
           <NavigationProperty Name="HoaDons" Relationship="QuanLyQuanNuocModel.FK_HoaDon_Ban" FromRole="Ban" ToRole="HoaDon" />
         </EntityType>
+        <EntityType Name="HoaDon">
+          <Key>
+            <PropertyRef Name="MaHD" />
+          </Key>
+          <Property Name="MaHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaBan" Type="Int32" Nullable="false" />
+          <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="GioVao" Type="DateTime" Precision="3" />
+          <Property Name="GioRa" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Ban" Relationship="QuanLyQuanNuocModel.FK_HoaDon_Ban" FromRole="HoaDon" ToRole="Ban" />
+          <Property Name="TinhTrang" Type="Boolean" />
+          <NavigationProperty Name="CTHDs" Relationship="QuanLyQuanNuocModel.FK_CTHD_HoaDon" FromRole="HoaDon" ToRole="CTHD" />
+        </EntityType>
+        <Association Name="FK_HoaDon_Ban">
+          <End Type="QuanLyQuanNuocModel.Ban" Role="Ban" Multiplicity="1" />
+          <End Type="QuanLyQuanNuocModel.HoaDon" Role="HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ban">
+              <PropertyRef Name="MaBan" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="MaBan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="CTHD">
           <Key>
             <PropertyRef Name="MaHD" />
@@ -249,19 +274,6 @@
           <Property Name="ThanhTien" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="HoaDon" Relationship="QuanLyQuanNuocModel.FK_CTHD_HoaDon" FromRole="CTHD" ToRole="HoaDon" />
           <NavigationProperty Name="Spham" Relationship="QuanLyQuanNuocModel.FK_CTHD_Spham" FromRole="CTHD" ToRole="Spham" />
-        </EntityType>
-        <EntityType Name="HoaDon">
-          <Key>
-            <PropertyRef Name="MaHD" />
-          </Key>
-          <Property Name="MaHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaBan" Type="Int32" Nullable="false" />
-          <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="GioVao" Type="DateTime" Precision="3" />
-          <Property Name="GioRa" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="CTHDs" Relationship="QuanLyQuanNuocModel.FK_CTHD_HoaDon" FromRole="HoaDon" ToRole="CTHD" />
-          <NavigationProperty Name="Ban" Relationship="QuanLyQuanNuocModel.FK_HoaDon_Ban" FromRole="HoaDon" ToRole="Ban" />
-          <Property Name="TinhTrang" Type="Boolean" />
         </EntityType>
         <Association Name="FK_CTHD_HoaDon">
           <End Type="QuanLyQuanNuocModel.HoaDon" Role="HoaDon" Multiplicity="1" />
@@ -287,19 +299,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_HoaDon_Ban">
-          <End Type="QuanLyQuanNuocModel.Ban" Role="Ban" Multiplicity="1" />
-          <End Type="QuanLyQuanNuocModel.HoaDon" Role="HoaDon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ban">
-              <PropertyRef Name="MaBan" />
-            </Principal>
-            <Dependent Role="HoaDon">
-              <PropertyRef Name="MaBan" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -357,16 +357,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CTHDs">
-            <EntityTypeMapping TypeName="QuanLyQuanNuocModel.CTHD">
-              <MappingFragment StoreEntitySet="CTHD">
-                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
-                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="HoaDons">
             <EntityTypeMapping TypeName="QuanLyQuanNuocModel.HoaDon">
               <MappingFragment StoreEntitySet="HoaDon">
@@ -375,6 +365,16 @@
                 <ScalarProperty Name="GioVao" ColumnName="GioVao" />
                 <ScalarProperty Name="TongTien" ColumnName="TongTien" />
                 <ScalarProperty Name="MaBan" ColumnName="MaBan" />
+                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CTHDs">
+            <EntityTypeMapping TypeName="QuanLyQuanNuocModel.CTHD">
+              <MappingFragment StoreEntitySet="CTHD">
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
                 <ScalarProperty Name="MaHD" ColumnName="MaHD" />
               </MappingFragment>
             </EntityTypeMapping>

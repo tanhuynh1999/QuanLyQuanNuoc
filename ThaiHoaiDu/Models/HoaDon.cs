@@ -27,8 +27,8 @@ namespace ThaiHoaiDu.Models
         public Nullable<System.DateTime> GioRa { get; set; }
         public Nullable<bool> TinhTrang { get; set; }
     
+        public virtual Ban Ban { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTHD> CTHDs { get; set; }
-        public virtual Ban Ban { get; set; }
     }
 }

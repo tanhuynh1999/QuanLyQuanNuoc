@@ -1,0 +1,116 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using ThaiHoaiDu.Models;
+using PagedList;
+using PagedList.Mvc;
+using System.Net;
+using System.Data.Entity;
+
+namespace ThaiHoaiDu.Controllers
+{
+    public class SanPhamController : Controller
+    {
+        QuanLyQuanNuocEntities db = new QuanLyQuanNuocEntities();
+        // GET: SanPham
+        public ActionResult Index(int? id, int? page)
+        {
+            Session["idSP"] = id;
+            if(id == 0 || id == null)
+            {
+                ViewBag.TBSP = "Tất cả";
+                return View(db.Sphams.OrderBy(t => t.TenSanPham).ToPagedList(page ?? 1, 20));
+            }
+            ViewBag.TBSP = db.DanhMucs.Find(id).TenDanhMuc;
+            return View(db.Sphams.Where(t => t.MaDanhMuc == id).OrderBy(t => t.TenSanPham).ToPagedList(page ?? 1, 20));
+        }
+        public PartialViewResult dsDanhMuc()
+        {
+            return PartialView(db.DanhMucs.ToList());
+        }
+        public ActionResult Create()
+        {
+            ViewBag.MaDanhMuc = new SelectList(db.DanhMucs, "MaDanhMuc", "TenDanhMuc");
+            return View();
+        }
+
+        // POST: Sphams/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "MaSanPham,TenSanPham,Gia,Anh,PhanBiet,MaDanhMuc")] Spham spham)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Sphams.Add(spham);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.MaDanhMuc = new SelectList(db.DanhMucs, "MaDanhMuc", "TenDanhMuc", spham.MaDanhMuc);
+            return View(spham);
+        }
+
+        // GET: Sphams/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Spham spham = db.Sphams.Find(id);
+            if (spham == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.MaDanhMuc = new SelectList(db.DanhMucs, "MaDanhMuc", "TenDanhMuc", spham.MaDanhMuc);
+            return View(spham);
+        }
+
+        // POST: Sphams/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "MaSanPham,TenSanPham,Gia,Anh,PhanBiet,MaDanhMuc")] Spham spham)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(spham).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.MaDanhMuc = new SelectList(db.DanhMucs, "MaDanhMuc", "TenDanhMuc", spham.MaDanhMuc);
+            return View(spham);
+        }
+
+        // GET: Sphams/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Spham spham = db.Sphams.Find(id);
+            if (spham == null)
+            {
+                return HttpNotFound();
+            }
+            return View(spham);
+        }
+
+        // POST: Sphams/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Spham spham = db.Sphams.Find(id);
+            db.Sphams.Remove(spham);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+    }
+}

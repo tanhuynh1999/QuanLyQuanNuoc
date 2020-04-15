@@ -57,7 +57,9 @@
         </div>
         <!--market updates end here-->
         <!--mainpage chit-chating-->
-        @Html.Action("BanNgoi", "QuanLy")
+        @{ if (Session["idbanngoi"] == null) { Session["idbanngoi"] = 0; }
+        }
+        @Html.Action("BanNgoi", "QuanLy", new { id = int.Parse(Session["idbanngoi"].ToString())})
         <!--main page chit chating end here-->
         <!--main page chart start here-->
         <!--main page chart layer2-->
