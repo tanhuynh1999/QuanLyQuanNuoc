@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ThaiHoaiDu.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace ThaiHoaiDu.Controllers
 {
@@ -12,33 +14,30 @@ namespace ThaiHoaiDu.Controllers
     {
         QuanLyQuanNuocEntities db = new QuanLyQuanNuocEntities();
         // GET: NhatKi
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? id, int? page)
         {
-            DateTime dat = DateTime.Now;   
-            if(id == 1)
+            Session["idnk"] = id;
+            int pagenum = (page ?? 1);
+            DateTime dat = DateTime.Now;
+            if (id == 1)
             {
                 ViewBag.ID = "tuần";
-                return View(db.CTHDs.Where(t => DbFunctions.DiffDays(t.HoaDon.GioRa,dat) <= 7 && t.HoaDon.GioRa != null).OrderByDescending(t => t.HoaDon.GioRa).ToList());
+                return PartialView(db.CTHDs.Where(t => DbFunctions.DiffDays(t.HoaDon.GioRa, dat) <= 7 && t.HoaDon.GioRa != null).OrderByDescending(t => t.HoaDon.GioRa).ToPagedList(pagenum, 10));
             }
-            else if(id == 2)
+            else if (id == 2)
             {
                 ViewBag.ID = "tháng";
-                return View(db.CTHDs.Where(t => t.HoaDon.GioRa.Value.Month == dat.Month && t.HoaDon.GioRa.Value.Year == dat.Year && t.HoaDon.GioRa != null).OrderByDescending(t => t.HoaDon.GioRa).ToList());
+                return PartialView(db.CTHDs.Where(t => t.HoaDon.GioRa.Value.Month == dat.Month && t.HoaDon.GioRa.Value.Year == dat.Year && t.HoaDon.GioRa != null).OrderByDescending(t => t.HoaDon.GioRa).ToPagedList(pagenum, 10));
             }
-            else if(id == 3)
+            else if (id == 3)
             {
                 ViewBag.ID = "tất cả";
-                return View(db.CTHDs.ToList());
+                return PartialView(db.CTHDs.ToPagedList(pagenum, 10));
             }
+            ViewBag.id = 0;
             ViewBag.ID = "ngày";
-            return View(db.CTHDs.Where(t => t.HoaDon.GioRa.Value.Day == dat.Day && t.HoaDon.GioRa.Value.Month == dat.Month && t.HoaDon.GioRa.Value.Year == dat.Year && t.HoaDon.GioRa != null).OrderByDescending(t => t.HoaDon.GioRa).ToList());
-        }
-        public int truNgayTheoTuan(DateTime dat)
-        {
-            int kq = (DateTime.Now - dat).Days;
-            if (kq > 7)
-                return 0;
-            return 1;
+            return PartialView(db.CTHDs.Where(t => t.HoaDon.GioRa.Value.Day == dat.Day && t.HoaDon.GioRa.Value.Month == dat.Month && t.HoaDon.GioRa.Value.Year == dat.Year && t.HoaDon.GioRa != null).OrderByDescending(t => t.HoaDon.GioRa).ToPagedList(pagenum, 10));
         }
     }
+
 }

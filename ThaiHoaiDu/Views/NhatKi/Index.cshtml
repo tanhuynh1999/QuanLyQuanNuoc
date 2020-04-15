@@ -1,5 +1,7 @@
 ﻿@using ThaiHoaiDu.Models;
-@model List<CTHD>
+@using PagedList;
+@using PagedList.Mvc; 
+@model PagedList.PagedList<CTHD>
 @{
     ViewBag.Title = "NhatKyNgay";
     Layout = "~/Views/Layout/QuanLy.cshtml";
@@ -163,6 +165,22 @@
                             }
                         </tbody>
                     </table>
+                    <center>
+                        <div>
+                            @{
+                                int idnk = new int();
+                                if (Session["idnk"] == null)
+                                {
+                                    idnk = 0;
+                                }
+                                else
+                                {
+                                    idnk = int.Parse(Session["idnk"].ToString());
+                                }
+                            }
+                            @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page = Page, id = idnk }))
+                        </div>
+                    </center>
                 </div>
             </div>
         </div>
