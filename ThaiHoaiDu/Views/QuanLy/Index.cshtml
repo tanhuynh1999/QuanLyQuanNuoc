@@ -1,9 +1,5 @@
 ﻿
 @{
-    if (Session["TaiKhoan"] == null)
-    {
-        Response.Redirect("/DangNhap/Index");
-    }
     ViewBag.Title = "Index";
     Layout = "~/Views/Layout/QuanLy.cshtml";
     ThaiHoaiDu.Models.QuanLyQuanNuocEntities db = new ThaiHoaiDu.Models.QuanLyQuanNuocEntities();

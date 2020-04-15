@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,14 +12,33 @@ namespace ThaiHoaiDu.Controllers
     {
         QuanLyQuanNuocEntities db = new QuanLyQuanNuocEntities();
         // GET: NhatKi
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View();
+            DateTime dat = DateTime.Now;   
+            if(id == 1)
+            {
+                ViewBag.ID = "tuần";
+                return View(db.CTHDs.Where(t => DbFunctions.DiffDays(t.HoaDon.GioRa,dat) <= 7 && t.HoaDon.GioRa != null).OrderByDescending(t => t.HoaDon.GioRa).ToList());
+            }
+            else if(id == 2)
+            {
+                ViewBag.ID = "tháng";
+                return View(db.CTHDs.Where(t => t.HoaDon.GioRa.Value.Month == dat.Month && t.HoaDon.GioRa.Value.Year == dat.Year && t.HoaDon.GioRa != null).OrderByDescending(t => t.HoaDon.GioRa).ToList());
+            }
+            else if(id == 3)
+            {
+                ViewBag.ID = "tất cả";
+                return View(db.CTHDs.ToList());
+            }
+            ViewBag.ID = "ngày";
+            return View(db.CTHDs.Where(t => t.HoaDon.GioRa.Value.Day == dat.Day && t.HoaDon.GioRa.Value.Month == dat.Month && t.HoaDon.GioRa.Value.Year == dat.Year && t.HoaDon.GioRa != null).OrderByDescending(t => t.HoaDon.GioRa).ToList());
         }
-        public ActionResult doanhThuNgay()
+        public int truNgayTheoTuan(DateTime dat)
         {
-            DateTime dat = DateTime.Now;
-            return View(db.HoaDons.Where(t => t.GioRa.Value.Day == dat.Day && t.GioRa.Value.Month == dat.Month && t.GioRa.Value.Year == dat.Year && t.GioRa == null).OrderByDescending(t => t.GioRa).ToList());
+            int kq = (DateTime.Now - dat).Days;
+            if (kq > 7)
+                return 0;
+            return 1;
         }
     }
 }
