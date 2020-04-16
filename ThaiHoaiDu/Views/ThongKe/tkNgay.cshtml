@@ -17,7 +17,7 @@
     }
 }
 <div>
-    <span>Tiền thu trong ngày: @Model.Sum(t => t.ThanhTien)</span><br />
+    <span>Tiền thu trong ngày: @{ float thanhtien = (float)Model.Sum(t => t.ThanhTien);} @thanhtien.ToString("#,##0")</span><br />
     <span>1Hóa đơn/1bàn trong ngày: @demhd</span><br />
 
     <span>1 khách/ 1 đồ dùng trong ngày: @Model.Sum(t => t.SoLuong)</span><br />

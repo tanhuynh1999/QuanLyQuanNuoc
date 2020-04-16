@@ -160,7 +160,7 @@
                                         @item.Spham.Gia
                                     </td>
                                     <td>
-                                        @item.ThanhTien
+                                        @{ float thanhtien = (float)item.ThanhTien;} @thanhtien.ToString("#,##0")
                                     </td>
                                     <td>
                                         @item.HoaDon.GioRa.Value.ToShortDateString()
