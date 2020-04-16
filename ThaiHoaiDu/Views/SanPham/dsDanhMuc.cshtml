@@ -1,8 +1,7 @@
 ﻿@using ThaiHoaiDu.Models;
 @model List<DanhMuc>
-
 <form action="@Url.Action("Index", "SanPham")">
-    <select name="id">
+    <select name="id" class="btn btn-default">
         <option value="0">Tât cả</option>
         @foreach (var item in Model)
         {
