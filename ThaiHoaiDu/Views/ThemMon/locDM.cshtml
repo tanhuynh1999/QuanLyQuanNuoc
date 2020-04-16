@@ -2,9 +2,9 @@
 @using ThaiHoaiDu.Models;
 @model List<DanhMuc>
 @{ int idb = (int)Session["IDBAN"];}
-<form action="@Url.Action("Index", "ThemMon")">
+<form action="@Url.Action("Index", "ThemMon")" style="margin-left: 1%">
     <input type="hidden" name="IDBan" value="@idb"/>
-    <select name="id">
+    <select name="id" class="btn btn-default">
         <option value="0">Tât cả</option>
         @foreach (var item in Model)
         {
@@ -13,3 +13,4 @@
     </select>
     <input type="submit" value="Lọc" class="btn btn-default" />
 </form>
+<br />

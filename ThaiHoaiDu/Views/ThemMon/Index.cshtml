@@ -34,7 +34,7 @@
 
                 <center>
                     <h3>
-                        Tổng tiền: <b style="color: red;">@Model.Sum(t => t.ThanhTien).ToString("0.")</b> VNĐ
+                        Tổng tiền: <b style="color: red;">@Model.Sum(t => t.ThanhTien).ToString("#,##0")</b> VNĐ
                     </h3>
                     <br />
                     @if (Model.Count == 0)
