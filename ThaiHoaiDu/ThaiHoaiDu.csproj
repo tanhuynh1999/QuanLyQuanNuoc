@@ -135,6 +135,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
+    <Compile Include="Controllers\DanhMucsController.cs" />
     <Compile Include="Controllers\NguoiDungsController.cs" />
     <Compile Include="Controllers\NhatKiController.cs" />
     <Compile Include="Controllers\QuanLyController.cs" />
@@ -1898,13 +1899,6 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\Layout\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\Layout\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\Layout\fonts\fontawesome-webfont.woff" />
@@ -1968,6 +1962,13 @@
     <Content Include="Content\Layout\Some\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\Layout\Some\webfonts\fa-solid-900.woff" />
     <Content Include="Content\Layout\Some\webfonts\fa-solid-900.woff2" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2009,6 +2010,9 @@
     <Content Include="Views\ThongKe\tkTuan.cshtml" />
     <Content Include="Views\ThongKe\tkThang.cshtml" />
     <Content Include="Views\ThongKe\tkNam.cshtml" />
+    <Content Include="Views\DanhMucs\Create.cshtml" />
+    <Content Include="Views\DanhMucs\Edit.cshtml" />
+    <Content Include="Views\DanhMucs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

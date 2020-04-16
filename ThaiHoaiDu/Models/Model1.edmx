@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="QuanLyQuanNuocModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QuanLyQuanNuocModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Ban">
           <Key>
             <PropertyRef Name="MaBan" />
@@ -146,45 +146,53 @@
             <End Role="Spham" EntitySet="Spham" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuanLyQuanNuocModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="sysdiagram">
+        <EntityType Name="Ban">
           <Key>
-            <PropertyRef Name="diagram_id" />
+            <PropertyRef Name="MaBan" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="MaBan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SoBan" Type="Int32" />
+          <Property Name="TinhTrang" Type="Int32" />
+          <NavigationProperty Name="HoaDons" Relationship="Self.FK_HoaDon_Ban" FromRole="Ban" ToRole="HoaDon" />
         </EntityType>
-        <EntityContainer Name="QuanLyQuanNuocEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="NguoiDungs" EntityType="QuanLyQuanNuocModel.NguoiDung" />
-          <EntitySet Name="Sphams" EntityType="QuanLyQuanNuocModel.Spham" />
-          <EntitySet Name="DanhMucs" EntityType="QuanLyQuanNuocModel.DanhMuc" />
-          <AssociationSet Name="FK_Spham_DanhMuc" Association="QuanLyQuanNuocModel.FK_Spham_DanhMuc">
-            <End Role="DanhMuc" EntitySet="DanhMucs" />
-            <End Role="Spham" EntitySet="Sphams" />
-          </AssociationSet>
-          <EntitySet Name="Bans" EntityType="QuanLyQuanNuocModel.Ban" />
-          <EntitySet Name="HoaDons" EntityType="QuanLyQuanNuocModel.HoaDon" />
-          <AssociationSet Name="FK_HoaDon_Ban" Association="QuanLyQuanNuocModel.FK_HoaDon_Ban">
-            <End Role="Ban" EntitySet="Bans" />
-            <End Role="HoaDon" EntitySet="HoaDons" />
-          </AssociationSet>
-          <EntitySet Name="CTHDs" EntityType="QuanLyQuanNuocModel.CTHD" />
-          <AssociationSet Name="FK_CTHD_HoaDon" Association="QuanLyQuanNuocModel.FK_CTHD_HoaDon">
-            <End Role="HoaDon" EntitySet="HoaDons" />
-            <End Role="CTHD" EntitySet="CTHDs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CTHD_Spham" Association="QuanLyQuanNuocModel.FK_CTHD_Spham">
-            <End Role="Spham" EntitySet="Sphams" />
-            <End Role="CTHD" EntitySet="CTHDs" />
-          </AssociationSet>
-          </EntityContainer>
+        <EntityType Name="CTHD">
+          <Key>
+            <PropertyRef Name="MaHD" />
+            <PropertyRef Name="MaSP" />
+          </Key>
+          <Property Name="MaHD" Type="Int32" Nullable="false" />
+          <Property Name="MaSP" Type="Int32" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="ThanhTien" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="HoaDon" Relationship="Self.FK_CTHD_HoaDon" FromRole="CTHD" ToRole="HoaDon" />
+          <NavigationProperty Name="Spham" Relationship="Self.FK_CTHD_Spham" FromRole="CTHD" ToRole="Spham" />
+        </EntityType>
+        <EntityType Name="DanhMuc">
+          <Key>
+            <PropertyRef Name="MaDanhMuc" />
+          </Key>
+          <Property Name="MaDanhMuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDanhMuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sphams" Relationship="Self.FK_Spham_DanhMuc" FromRole="DanhMuc" ToRole="Spham" />
+        </EntityType>
+        <EntityType Name="HoaDon">
+          <Key>
+            <PropertyRef Name="MaHD" />
+          </Key>
+          <Property Name="MaHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaBan" Type="Int32" Nullable="false" />
+          <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="GioVao" Type="DateTime" Precision="3" />
+          <Property Name="GioRa" Type="DateTime" Precision="3" />
+          <Property Name="TinhTrang" Type="Boolean" />
+          <NavigationProperty Name="Ban" Relationship="Self.FK_HoaDon_Ban" FromRole="HoaDon" ToRole="Ban" />
+          <NavigationProperty Name="CTHDs" Relationship="Self.FK_CTHD_HoaDon" FromRole="HoaDon" ToRole="CTHD" />
+        </EntityType>
         <EntityType Name="NguoiDung">
           <Key>
             <PropertyRef Name="MaNguoiDung" />
@@ -206,54 +214,22 @@
           <Property Name="Anh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PhanBiet" Type="Boolean" />
           <Property Name="MaDanhMuc" Type="Int32" />
-          <NavigationProperty Name="DanhMuc" Relationship="QuanLyQuanNuocModel.FK_Spham_DanhMuc" FromRole="Spham" ToRole="DanhMuc" />
-          <NavigationProperty Name="CTHDs" Relationship="QuanLyQuanNuocModel.FK_CTHD_Spham" FromRole="Spham" ToRole="CTHD" />
+          <NavigationProperty Name="CTHDs" Relationship="Self.FK_CTHD_Spham" FromRole="Spham" ToRole="CTHD" />
+          <NavigationProperty Name="DanhMuc" Relationship="Self.FK_Spham_DanhMuc" FromRole="Spham" ToRole="DanhMuc" />
         </EntityType>
-        <EntityType Name="DanhMuc">
+        <EntityType Name="sysdiagram">
           <Key>
-            <PropertyRef Name="MaDanhMuc" />
+            <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="MaDanhMuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenDanhMuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Sphams" Relationship="QuanLyQuanNuocModel.FK_Spham_DanhMuc" FromRole="DanhMuc" ToRole="Spham" />
-        </EntityType>
-        <Association Name="FK_Spham_DanhMuc">
-          <End Type="QuanLyQuanNuocModel.DanhMuc" Role="DanhMuc" Multiplicity="0..1" />
-          <End Type="QuanLyQuanNuocModel.Spham" Role="Spham" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DanhMuc">
-              <PropertyRef Name="MaDanhMuc" />
-            </Principal>
-            <Dependent Role="Spham">
-              <PropertyRef Name="MaDanhMuc" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Ban">
-          <Key>
-            <PropertyRef Name="MaBan" />
-          </Key>
-          <Property Name="MaBan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SoBan" Type="Int32" />
-          <Property Name="TinhTrang" Type="Int32" />
-          <NavigationProperty Name="HoaDons" Relationship="QuanLyQuanNuocModel.FK_HoaDon_Ban" FromRole="Ban" ToRole="HoaDon" />
-        </EntityType>
-        <EntityType Name="HoaDon">
-          <Key>
-            <PropertyRef Name="MaHD" />
-          </Key>
-          <Property Name="MaHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaBan" Type="Int32" Nullable="false" />
-          <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="GioVao" Type="DateTime" Precision="3" />
-          <Property Name="GioRa" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Ban" Relationship="QuanLyQuanNuocModel.FK_HoaDon_Ban" FromRole="HoaDon" ToRole="Ban" />
-          <Property Name="TinhTrang" Type="Boolean" />
-          <NavigationProperty Name="CTHDs" Relationship="QuanLyQuanNuocModel.FK_CTHD_HoaDon" FromRole="HoaDon" ToRole="CTHD" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <Association Name="FK_HoaDon_Ban">
-          <End Type="QuanLyQuanNuocModel.Ban" Role="Ban" Multiplicity="1" />
-          <End Type="QuanLyQuanNuocModel.HoaDon" Role="HoaDon" Multiplicity="*" />
+          <End Role="Ban" Type="Self.Ban" Multiplicity="1" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ban">
               <PropertyRef Name="MaBan" />
@@ -263,21 +239,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="CTHD">
-          <Key>
-            <PropertyRef Name="MaHD" />
-            <PropertyRef Name="MaSP" />
-          </Key>
-          <Property Name="MaHD" Type="Int32" Nullable="false" />
-          <Property Name="MaSP" Type="Int32" Nullable="false" />
-          <Property Name="SoLuong" Type="Int32" />
-          <Property Name="ThanhTien" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="HoaDon" Relationship="QuanLyQuanNuocModel.FK_CTHD_HoaDon" FromRole="CTHD" ToRole="HoaDon" />
-          <NavigationProperty Name="Spham" Relationship="QuanLyQuanNuocModel.FK_CTHD_Spham" FromRole="CTHD" ToRole="Spham" />
-        </EntityType>
         <Association Name="FK_CTHD_HoaDon">
-          <End Type="QuanLyQuanNuocModel.HoaDon" Role="HoaDon" Multiplicity="1" />
-          <End Type="QuanLyQuanNuocModel.CTHD" Role="CTHD" Multiplicity="*" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
+          <End Role="CTHD" Type="Self.CTHD" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HoaDon">
               <PropertyRef Name="MaHD" />
@@ -288,8 +252,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CTHD_Spham">
-          <End Type="QuanLyQuanNuocModel.Spham" Role="Spham" Multiplicity="1" />
-          <End Type="QuanLyQuanNuocModel.CTHD" Role="CTHD" Multiplicity="*" />
+          <End Role="Spham" Type="Self.Spham" Multiplicity="1" />
+          <End Role="CTHD" Type="Self.CTHD" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Spham">
               <PropertyRef Name="MaSanPham" />
@@ -299,12 +263,112 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+        <Association Name="FK_Spham_DanhMuc">
+          <End Role="DanhMuc" Type="Self.DanhMuc" Multiplicity="0..1" />
+          <End Role="Spham" Type="Self.Spham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMuc">
+              <PropertyRef Name="MaDanhMuc" />
+            </Principal>
+            <Dependent Role="Spham">
+              <PropertyRef Name="MaDanhMuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuanLyQuanNuocEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bans" EntityType="Self.Ban" />
+          <EntitySet Name="CTHDs" EntityType="Self.CTHD" />
+          <EntitySet Name="DanhMucs" EntityType="Self.DanhMuc" />
+          <EntitySet Name="HoaDons" EntityType="Self.HoaDon" />
+          <EntitySet Name="NguoiDungs" EntityType="Self.NguoiDung" />
+          <EntitySet Name="Sphams" EntityType="Self.Spham" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_HoaDon_Ban" Association="Self.FK_HoaDon_Ban">
+            <End Role="Ban" EntitySet="Bans" />
+            <End Role="HoaDon" EntitySet="HoaDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CTHD_HoaDon" Association="Self.FK_CTHD_HoaDon">
+            <End Role="HoaDon" EntitySet="HoaDons" />
+            <End Role="CTHD" EntitySet="CTHDs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CTHD_Spham" Association="Self.FK_CTHD_Spham">
+            <End Role="Spham" EntitySet="Sphams" />
+            <End Role="CTHD" EntitySet="CTHDs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Spham_DanhMuc" Association="Self.FK_Spham_DanhMuc">
+            <End Role="DanhMuc" EntitySet="DanhMucs" />
+            <End Role="Spham" EntitySet="Sphams" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="QuanLyQuanNuocModelStoreContainer" CdmEntityContainer="QuanLyQuanNuocEntities">
+          <EntitySetMapping Name="Bans">
+            <EntityTypeMapping TypeName="QuanLyQuanNuocModel.Ban">
+              <MappingFragment StoreEntitySet="Ban">
+                <ScalarProperty Name="MaBan" ColumnName="MaBan" />
+                <ScalarProperty Name="SoBan" ColumnName="SoBan" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CTHDs">
+            <EntityTypeMapping TypeName="QuanLyQuanNuocModel.CTHD">
+              <MappingFragment StoreEntitySet="CTHD">
+                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DanhMucs">
+            <EntityTypeMapping TypeName="QuanLyQuanNuocModel.DanhMuc">
+              <MappingFragment StoreEntitySet="DanhMuc">
+                <ScalarProperty Name="MaDanhMuc" ColumnName="MaDanhMuc" />
+                <ScalarProperty Name="TenDanhMuc" ColumnName="TenDanhMuc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HoaDons">
+            <EntityTypeMapping TypeName="QuanLyQuanNuocModel.HoaDon">
+              <MappingFragment StoreEntitySet="HoaDon">
+                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+                <ScalarProperty Name="MaBan" ColumnName="MaBan" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="GioVao" ColumnName="GioVao" />
+                <ScalarProperty Name="GioRa" ColumnName="GioRa" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NguoiDungs">
+            <EntityTypeMapping TypeName="QuanLyQuanNuocModel.NguoiDung">
+              <MappingFragment StoreEntitySet="NguoiDung">
+                <ScalarProperty Name="MaNguoiDung" ColumnName="MaNguoiDung" />
+                <ScalarProperty Name="TenNguoiDung" ColumnName="TenNguoiDung" />
+                <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="VaiTro" ColumnName="VaiTro" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sphams">
+            <EntityTypeMapping TypeName="QuanLyQuanNuocModel.Spham">
+              <MappingFragment StoreEntitySet="Spham">
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="Anh" ColumnName="Anh" />
+                <ScalarProperty Name="PhanBiet" ColumnName="PhanBiet" />
+                <ScalarProperty Name="MaDanhMuc" ColumnName="MaDanhMuc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="QuanLyQuanNuocModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -313,69 +377,6 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NguoiDungs">
-            <EntityTypeMapping TypeName="QuanLyQuanNuocModel.NguoiDung">
-              <MappingFragment StoreEntitySet="NguoiDung">
-                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
-                <ScalarProperty Name="VaiTro" ColumnName="VaiTro" />
-                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
-                <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
-                <ScalarProperty Name="TenNguoiDung" ColumnName="TenNguoiDung" />
-                <ScalarProperty Name="MaNguoiDung" ColumnName="MaNguoiDung" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sphams">
-            <EntityTypeMapping TypeName="QuanLyQuanNuocModel.Spham">
-              <MappingFragment StoreEntitySet="Spham">
-                <ScalarProperty Name="MaDanhMuc" ColumnName="MaDanhMuc" />
-                <ScalarProperty Name="PhanBiet" ColumnName="PhanBiet" />
-                <ScalarProperty Name="Anh" ColumnName="Anh" />
-                <ScalarProperty Name="Gia" ColumnName="Gia" />
-                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
-                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DanhMucs">
-            <EntityTypeMapping TypeName="QuanLyQuanNuocModel.DanhMuc">
-              <MappingFragment StoreEntitySet="DanhMuc">
-                <ScalarProperty Name="TenDanhMuc" ColumnName="TenDanhMuc" />
-                <ScalarProperty Name="MaDanhMuc" ColumnName="MaDanhMuc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Bans">
-            <EntityTypeMapping TypeName="QuanLyQuanNuocModel.Ban">
-              <MappingFragment StoreEntitySet="Ban">
-                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
-                <ScalarProperty Name="SoBan" ColumnName="SoBan" />
-                <ScalarProperty Name="MaBan" ColumnName="MaBan" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HoaDons">
-            <EntityTypeMapping TypeName="QuanLyQuanNuocModel.HoaDon">
-              <MappingFragment StoreEntitySet="HoaDon">
-                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
-                <ScalarProperty Name="GioRa" ColumnName="GioRa" />
-                <ScalarProperty Name="GioVao" ColumnName="GioVao" />
-                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
-                <ScalarProperty Name="MaBan" ColumnName="MaBan" />
-                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CTHDs">
-            <EntityTypeMapping TypeName="QuanLyQuanNuocModel.CTHD">
-              <MappingFragment StoreEntitySet="CTHD">
-                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
-                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
