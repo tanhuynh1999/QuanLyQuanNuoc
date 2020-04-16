@@ -240,6 +240,7 @@
     <Content Include="Content\Layout\images\tick.png" />
     <Content Include="Content\Layout\images\user.png" />
     <Content Include="Content\Layout\images\visit.png" />
+    <Content Include="Content\Layout\js\DeleteConfirm.js" />
     <Content Include="Content\Layout\js\SessionUpdater.js" />
     <Content Include="Content\Layout\Some\css\all.css" />
     <Content Include="Content\Layout\Some\css\all.min.css" />

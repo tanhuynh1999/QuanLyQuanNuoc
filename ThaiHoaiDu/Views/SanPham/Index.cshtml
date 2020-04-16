@@ -43,18 +43,18 @@
                                     @{ float giaban = (float)item.Gia;}
                                     @giaban.ToString("#,##0") vnđ/@if (item.PhanBiet == true)
                                     {@lon;
-                                }
-                                else
-                                {@ly;
-                            }
+                                    }
+                                    else
+                                    {@ly;
+                                    }
                                 </h5>
                             </div>
                             <center>
                                 <br />
-                                <a href="@Url.Action("Edit", "SanPham", new { id = item.MaSanPham})" class="btn btn-danger"><i class="fas fa-redo-alt"></i></a>
-                                <button type="button" class="btn btn-danger" name="bt" id="@item.MaSanPham" onclick="@{idxoa = item.MaSanPham; })" data-toggle="modal" data-target="#Xoa">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
+                                <a href="@Url.Action("Edit", "SanPham", new { id = item.MaSanPham })" class="btn btn-danger"><i class="fas fa-redo-alt"></i></a>
+                                <!--<a href="Url.Action("DeleteConfirmed", "SanPham", new { id = item.MaSanPham})" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Xoa">
+        <i class="fas fa-trash-alt"></i> </a>-->
+                                <a data-id="@item.MaSanPham" data-controller="SanPham" data-action="DeleteConfirmed"  class="btn btn-danger delete" data-body-message="Bạn chắc chắn muốn xóa">Xóa</a>
                             </center>
                             <br />
                         </div>
@@ -87,9 +87,11 @@
                 Bạn chắc chắn muốn xóa?
             </div>
             <div class="modal-footer">
-                <a href="@Url.Action("DeleteConfirmed","SanPham", new { id = idxoa})"><button type="button" class="btn btn-secondary">OK</button></a>
+                <a href="#"><button type="button" class="btn btn-secondary">OK</button></a>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
             </div>
         </div>
     </div>
 </div>
+
+<script src="~/Content/Layout/js/DeleteConfirm.js"></script>
