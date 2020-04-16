@@ -39,5 +39,11 @@ namespace ThaiHoaiDu.Controllers
         {
             return View(db.Sphams.ToList());
         }
+        // keep session
+        [HttpPost]
+        public JsonResult KeepSessionAlive()
+        {
+            return new JsonResult { Data = "Success" };
+        }
     }
 }

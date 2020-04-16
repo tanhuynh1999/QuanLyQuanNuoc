@@ -38,5 +38,10 @@ namespace ThaiHoaiDu.Controllers
             }
             return View();
         }
+        public ActionResult DangXuat()
+        {
+            Session["TaiKhoan"] = Session["IDBAN"] = null;
+            return Redirect("/DangNhap/Index");
+        }
     }
 }

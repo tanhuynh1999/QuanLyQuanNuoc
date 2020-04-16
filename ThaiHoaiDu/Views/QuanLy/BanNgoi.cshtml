@@ -28,7 +28,7 @@
                 <div class="col-md-3 product-grid" style="cursor: pointer;">
                     <div class="product-items">
                         <div class="project-eff">
-                            <div id="nivo-lightbox-demo"> <p> <a href="@Url.Action("Index","ThemMon", new { IDBan = item.MaBan})" data-lightbox-gallery="gallery1" id="nivo-lightbox-demo"><span class="rollover1"> </span> </a></p></div>
+                            <div id="nivo-lightbox-demo"> <p> <a href="@Url.Action("Index", "ThemMon", new { id = 0, IDBan = item.MaBan })" data-lightbox-gallery="gallery1" id="nivo-lightbox-demo"><span class="rollover1"> </span> </a></p></div>
                             <img class="img-responsive" src="~/Content/Layout/images/table-1928456_960_720.png" alt="" style="height: 150px">
                         </div>
                         <div class="produ-cost" style="background-color:@if (item.TinhTrang == 0) { @xanhLa; } else { @den; }; border: 1px solid black;">

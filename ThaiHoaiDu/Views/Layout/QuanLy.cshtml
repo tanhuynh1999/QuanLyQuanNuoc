@@ -1,5 +1,5 @@
 ﻿@{
-    if(Session["TaiKhoan"] == null)
+    if (Session["TaiKhoan"] == null)
     {
         Response.Redirect("/DangNhap/Index");
     }
@@ -140,8 +140,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <div class="profile_img">
                                             <span class="prfil-img"><img src="~/Content/Layout/images/p1.png" alt=""> </span>
                                             <div class="user-name">
-                                                <p>Malorum</p>
-                                                <span>Administrator</span>
+                                                @if (nd != null)
+                                                {
+                                                    <p>@nd.TenNguoiDung</p>
+                                                    if (nd.VaiTro == true)
+                                                    {
+                                                        <span>Administrator</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>Nhân viên</span>
+                                                    }
+                                                }
                                             </div>
                                             <i class="fa fa-angle-down lnr"></i>
                                             <i class="fa fa-angle-up lnr"></i>
@@ -151,7 +161,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <ul class="dropdown-menu drp-mnu">
                                         <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
                                         <li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li>
-                                        <li> <a href="#"><i class="fa fa-sign-out"></i> Logout</a> </li>
+                                        <li> <a href="@Url.Action("DangXuat", "DangNhap")"><i class="fa fa-sign-out"></i> Logout</a> </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -242,6 +252,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="clearfix"> </div>
     </div>
     <!--slide bar menu end here-->
+    <script src="~/Content/Layout/js/SessionUpdater.js"></script>
+    <script type="text/javascript">
+    // initialize Session Updater on page
+    SessionUpdater.Setup('@Url.Action("KeepSessionAlive","Default")');
+    </script>
     <script>
         var toggle = true;
 

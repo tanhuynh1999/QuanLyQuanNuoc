@@ -7,7 +7,8 @@
 <div class="inner-block" style="margin-top: -10%">
     <div class="product-block">
         <div class="pro-head">
-            <h2>Sản phẩm</h2>
+            <h2>Sản phẩm - @ViewBag.TBSP</h2>
+            @Html.Action("locDM", "ThemMon")
             @foreach (var item in Model)
             {
                 <div class="col-md-3 product-grid">
@@ -27,7 +28,12 @@
                         <div class="produ-cost" style="border: 1px solid black; background-color: darkgreen">
                             <h4>@item.TenSanPham</h4>
                             @{ float giaban = (float)item.Gia;}
-                            <h5>@giaban.ToString("#,##0") vnđ/@if (item.PhanBiet == true){@lon;}else{@ly;}</h5>
+                            <h5>@giaban.ToString("#,##0") vnđ/@if (item.PhanBiet == true)
+                            {@lon;
+                        }
+                        else
+                        {@ly;
+                    }</h5>
                         </div>
                     </div>
                 </div>

@@ -14,16 +14,25 @@ namespace ThaiHoaiDu.Controllers
     {
         QuanLyQuanNuocEntities db = new QuanLyQuanNuocEntities();
         // GET: ThemMon
-        public ActionResult Index(int IDBan)
+        public ActionResult Index(int id, int IDBan)
         {
-            Session["IDBAN"] = IDBan;
+            Session["IDBan"] = IDBan;
+            Session["idlocDM"] = id;
             ganSession(IDBan);
             List<banDAO> temp = Session["banDAO"] as List<banDAO>;
             return View(temp.ToList());
         }
-        public PartialViewResult SanPham()
+        public PartialViewResult SanPham(int? id)
         {
-            return PartialView(db.Sphams.ToList());
+            if(id == null || id == 0)
+            {
+                return PartialView(db.Sphams.OrderBy(t => t.TenSanPham).ToList());
+            }    
+            return PartialView(db.Sphams.Where(t => t.MaDanhMuc == id).OrderBy(t => t.TenSanPham).ToList());
+        }
+        public PartialViewResult locDM()
+        {
+            return PartialView(db.DanhMucs.ToList());
         }
         public void ganSession(int IDBan)
         {

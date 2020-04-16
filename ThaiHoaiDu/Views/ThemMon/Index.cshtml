@@ -51,7 +51,8 @@
             </div>
         </div>
     </div>       
-@Html.Action("SanPham", "ThemMon")
+@{ int idlocDM = (int)Session["idlocDM"];}
+@Html.Action("SanPham", "ThemMon", new { id = idlocDM })
 <!-- Button trigger modal -->
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -85,7 +86,7 @@
                 <hr />
                 <center>
                     <h3>
-                        Tổng tiền: <b style="color: red;">@Model.Sum(t => t.ThanhTien).ToString("0.")</b> VNĐ
+                        Tổng tiền: <b style="color: red;">@Model.Sum(t => t.ThanhTien).ToString("0,##0")</b> VNĐ
                     </h3>
                 </center>
             </div>
