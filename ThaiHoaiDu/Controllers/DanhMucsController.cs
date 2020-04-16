@@ -91,7 +91,7 @@ namespace ThaiHoaiDu.Controllers
             DanhMuc danhMuc = db.DanhMucs.Find(id);
             db.DanhMucs.Remove(danhMuc);
             db.SaveChanges();
-            return RedirectToAction(Request.UrlReferrer.ToString());
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         protected override void Dispose(bool disposing)
