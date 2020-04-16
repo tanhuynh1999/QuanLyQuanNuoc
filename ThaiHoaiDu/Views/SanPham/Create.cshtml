@@ -3,6 +3,11 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Layout/QuanLy.cshtml";
+    ThaiHoaiDu.Models.NguoiDung nd = (ThaiHoaiDu.Models.NguoiDung)Session["TaiKhoan"];
+    if (nd != null && nd.VaiTro == false)
+    {
+        Response.Redirect("/QuanLy/Index");
+    }
 }
 <div class="inner-block">
     <div class="product-block">

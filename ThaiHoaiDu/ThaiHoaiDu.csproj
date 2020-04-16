@@ -1990,7 +1990,6 @@
     <Content Include="Views\QuanLy\Index.cshtml" />
     <Content Include="Views\QuanLy\BanNgoi.cshtml" />
     <Content Include="Views\QuanLy\SanPham.cshtml" />
-    <Content Include="Views\ChiTietBan\hienHD.cshtml" />
     <Content Include="Views\ThemMon\Index.cshtml" />
     <Content Include="Views\ThemMon\SanPham.cshtml" />
     <Content Include="Views\NhatKi\Index.cshtml" />
@@ -2004,8 +2003,6 @@
     <Content Include="Views\SanPham\Create.cshtml" />
     <Content Include="Views\SanPham\Edit.cshtml" />
     <Content Include="Views\NguoiDungs\Create.cshtml" />
-    <Content Include="Views\NguoiDungs\Delete.cshtml" />
-    <Content Include="Views\NguoiDungs\Details.cshtml" />
     <Content Include="Views\NguoiDungs\Edit.cshtml" />
     <Content Include="Views\NguoiDungs\Index.cshtml" />
   </ItemGroup>

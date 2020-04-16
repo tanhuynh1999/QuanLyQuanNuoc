@@ -3,6 +3,10 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Layout/QuanLy.cshtml";
+    if (Model != null && Model.VaiTro == false)
+    {
+        Response.Redirect("/QuanLy/Index");
+    }
 }
 
     <div class="inner-block">

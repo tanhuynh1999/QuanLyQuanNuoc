@@ -5,6 +5,11 @@
 @{
     ViewBag.Title = "SanPham";
     Layout = "~/Views/Layout/QuanLy.cshtml";
+    ThaiHoaiDu.Models.NguoiDung nd = (ThaiHoaiDu.Models.NguoiDung)Session["TaiKhoan"];
+    if (nd != null && nd.VaiTro == false)
+    {
+        Response.Redirect("/QuanLy/Index");
+    }
     var lon = " Lon";
     var ly = " Ly";
     int idxoa = new int();
