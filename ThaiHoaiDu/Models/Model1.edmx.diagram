@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="89281b712dc34b0fb9531a0a984e8c19" Name="Diagram1">
-        <EntityTypeShape EntityType="QuanLyQuanNuocModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanNuocModel.NguoiDung" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="QuanLyQuanNuocModel.Spham" Width="1.5" PointX="3.375" PointY="3.75" />
-        <EntityTypeShape EntityType="QuanLyQuanNuocModel.DanhMuc" Width="1.5" PointX="1.125" PointY="7.125" />
-        <AssociationConnector Association="QuanLyQuanNuocModel.FK_Spham_DanhMuc" />
-        <EntityTypeShape EntityType="QuanLyQuanNuocModel.Ban" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="QuanLyQuanNuocModel.HoaDon" Width="1.5" PointX="3.375" PointY="8" />
-        <AssociationConnector Association="QuanLyQuanNuocModel.FK_HoaDon_Ban" />
-        <EntityTypeShape EntityType="QuanLyQuanNuocModel.CTHD" Width="1.5" PointX="5.625" PointY="6.125" />
-        <AssociationConnector Association="QuanLyQuanNuocModel.FK_CTHD_HoaDon" />
-        <AssociationConnector Association="QuanLyQuanNuocModel.FK_CTHD_Spham" />
-        </Diagram>
+      <Diagram DiagramId="6f614f916d55466f839b9efd51c34d56" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanLyQuanNuocModel.Ban" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanNuocModel.CTHD" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanNuocModel.DanhMuc" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanNuocModel.HoaDon" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanNuocModel.NguoiDung" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanNuocModel.Spham" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanNuocModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="QuanLyQuanNuocModel.FK_HoaDon_Ban" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyQuanNuocModel.FK_CTHD_HoaDon" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyQuanNuocModel.FK_CTHD_Spham" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyQuanNuocModel.FK_Spham_DanhMuc" ManuallyRouted="false" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
