@@ -20,7 +20,7 @@
                     <a href="#"><img src="images/b3.png" alt=""></a>
                 </div>
                 <div class="mailer-name">
-                    <h5><a href="#">Nhật ký @if (ViewBag.ID == null) { ViewBag.ID = "ngày"; } @ViewBag.ID</a></h5>
+                    <h5 style="color: white; font-weight: bold; font-size: 25px"><a href="#">Nhật ký @if (ViewBag.ID == null) { ViewBag.ID = "ngày"; } @ViewBag.ID</a></h5>
                 </div>
                 <div class="clearfix"> </div>
             </div>
@@ -32,7 +32,6 @@
                     <ul class="nav tabs">
                         <li class="active"><a href="#tab1" data-toggle="tab"><i class="fa fa-dollar">&nbsp;</i>Số hóa đơn<span> @{ float demhd = (float)Model.Count;}@demhd</span><div class="clearfix"></div></a></li>
                         <li class="active"><a href="#tab1" data-toggle="tab"><i class="fa fa-dollar">&nbsp;</i>Số sản phẩm bán<span> @{ float demsosp = (float)Model.Sum(t => t.SoLuong);}@demsosp  </span><div class="clearfix"></div></a></li>
-                        <li class="active"><a href="#tab1" data-toggle="tab"><i class="fa fa-dollar">&nbsp;</i>Số khách<span>0</span><div class="clearfix"></div></a></li>
                     </ul>
                 </nav>
             </div>
@@ -43,18 +42,18 @@
                     <div class="mail-toolbar clearfix">
                         <div class="float-left">
                             <div class="btn btn_1 btn-default mrg5R">
-                                <i class="fa fa-refresh"> </i>
+                                <i class="fa fa-refresh" onclick="location.reload()"> </i>
                             </div>
                             <div class="dropdown dropdown-inbox">
                                 <a href="#" title="" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa fa-cog icon_8"></i>
+                                    <i class="fas fa-calendar-check"></i>
                                     <i class="fa fa-chevron-down icon_8"></i>
                                     <div class="ripple-wrapper"></div>
                                 </a>
                                 <ul class="dropdown-menu float-right">
                                     <li>
                                         <a href="@Url.Action("Index", "NhatKi", new { id = 0})" title="">
-                                            <i class="fa fa-pencil-square-o icon_9"> </i>
+                                            <i class="far fa-clock"></i>
                                             Thống kê theo ngày
                                         </a>
                                     </li>
@@ -66,14 +65,14 @@
                                     </li>
                                     <li>
                                         <a href="@Url.Action("Index", "NhatKi", new { id = 2})" title="">
-                                            <i class="fa fa-download icon_9"> </i>
+                                            <i class="fas fa-calendar-alt"></i>
                                             Thống kê theo tháng
                                         </a>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
                                         <a href="@Url.Action("Index", "NhatKi", new { id = 3})" class="font-red" title="">
-                                            <i class="fa fa-times" icon_9=""> </i>
+                                            <i class="fas fa-allergies"></i>
                                             Tất cả
                                         </a>
                                     </li>
@@ -81,7 +80,7 @@
                             </div>
                             <div class="clearfix"> </div>
                         </div>
-                        <div class="float-right">
+                        @*<div class="float-right">
                             <span class="text-muted m-r-sm">Showing 20 of 346 </span>
                             <div class="btn-group m-r-sm mail-hidden-options" style="display: inline-block;">
                                 <div class="btn-group">
@@ -115,7 +114,7 @@
                                 <a class="btn btn-default"><i class="fa fa-angle-right"></i></a>
                             </div>
                             <div class="clearfix"> </div>
-                        </div>
+                        </div>*@
                     </div>
                     <table class="table tab-border">
                         <tbody>
