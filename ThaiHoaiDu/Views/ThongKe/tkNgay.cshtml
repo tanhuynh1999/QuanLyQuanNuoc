@@ -1,0 +1,40 @@
+﻿@using ThaiHoaiDu.Models;
+@model List<CTHD>
+
+@{
+    QuanLyQuanNuocEntities db = new QuanLyQuanNuocEntities();
+    int demhd = 0 ;
+    foreach(var item in db.HoaDons.ToList())
+    {
+        foreach(var jtem in Model)
+        {
+            if(item.MaHD == jtem.MaHD)
+            {
+                demhd++;
+                break;
+            }
+        }
+    }
+}
+<div>
+    <span>Tiền thu trong ngày: @Model.Sum(t => t.ThanhTien)</span><br />
+    <span>1Hóa đơn/1bàn trong ngày: @demhd</span><br />
+
+    <span>1 khách/ 1 đồ dùng trong ngày: @Model.Sum(t => t.SoLuong)</span><br />
+    <span>Sản phẩm đã sử dụng: </span><br />
+    @foreach (var item in db.Sphams.ToList())
+    {
+        foreach (var jtem in Model)
+        {
+            int maSP = jtem.Spham.MaSanPham;
+            if (item.MaSanPham == maSP)
+            {
+                List<CTHD> sp = Model.Where(t => t.Spham.MaSanPham == maSP).ToList();
+                foreach (var ktem in sp)
+                {
+                    <span>@item.TenSanPham: @sp.Sum(t => t.SoLuong)</span><br />
+                }
+            }
+        }
+    }
+</div>

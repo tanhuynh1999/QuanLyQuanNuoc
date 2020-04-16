@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/QuanLy.cshtml";
+}
+
+<span>Ngày</span>
+@Html.Action("tkNgay", "ThongKe")
+<br />
+<span>Tuần</span>
+@Html.Action("tkTuan", "ThongKe")
+<br />
+<span>Tháng</span>
+@Html.Action("tkThang", "ThongKe")
+<br />
+<span>Năm</span>
+@Html.Action("tkNam", "ThongKe")
+<br />

@@ -140,6 +140,7 @@
     <Compile Include="Controllers\QuanLyController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\ThemMonController.cs" />
+    <Compile Include="Controllers\ThongKeController.cs" />
     <Compile Include="DAO\banDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2003,6 +2004,11 @@
     <Content Include="Views\NguoiDungs\Edit.cshtml" />
     <Content Include="Views\NguoiDungs\Index.cshtml" />
     <Content Include="Views\ThemMon\locDM.cshtml" />
+    <Content Include="Views\ThongKe\Index.cshtml" />
+    <Content Include="Views\ThongKe\tkNgay.cshtml" />
+    <Content Include="Views\ThongKe\tkTuan.cshtml" />
+    <Content Include="Views\ThongKe\tkThang.cshtml" />
+    <Content Include="Views\ThongKe\tkNam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
