@@ -19,7 +19,8 @@ namespace ThaiHoaiDu.Controllers
         }
         public PartialViewResult tkNgay()
         {
-            return PartialView(db.CTHDs.Where(t => DbFunctions.DiffDays(t.HoaDon.GioRa, DateTime.Now) <= 1 && t.HoaDon.GioRa != null).ToList());
+            DateTime dat = DateTime.Now;
+            return PartialView(db.CTHDs.Where(t => t.HoaDon.GioRa.Value.Day == dat.Day && t.HoaDon.GioRa.Value.Month == dat.Month && t.HoaDon.GioRa.Value.Year == dat.Year && t.HoaDon.GioRa != null).ToList());
         }
         public PartialViewResult tkTuan()
         {

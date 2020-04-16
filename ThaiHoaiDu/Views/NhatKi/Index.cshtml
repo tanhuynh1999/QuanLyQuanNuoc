@@ -10,6 +10,19 @@
     {
         Response.Redirect("/QuanLy/Index");
     }
+    QuanLyQuanNuocEntities db = new QuanLyQuanNuocEntities();
+    int demhd = 0;
+    foreach (var item in db.HoaDons.ToList())
+    {
+        foreach (var jtem in Model)
+        {
+            if (item.MaHD == jtem.MaHD)
+            {
+                demhd++;
+                break;
+            }
+        }
+    }
 }
 
 <div class="inner-block">
@@ -30,7 +43,7 @@
             <div class="compose-bottom">
                 <nav class="nav-sidebar">
                     <ul class="nav tabs">
-                        <li class="active"><a href="#tab1" data-toggle="tab"><i class="fa fa-dollar">&nbsp;</i>Số hóa đơn<span> @{ float demhd = (float)Model.Count;}@demhd</span><div class="clearfix"></div></a></li>
+                        <li class="active"><a href="#tab1" data-toggle="tab"><i class="fa fa-dollar">&nbsp;</i>Số hóa đơn<span> @demhd</span><div class="clearfix"></div></a></li>
                         <li class="active"><a href="#tab1" data-toggle="tab"><i class="fa fa-dollar">&nbsp;</i>Số sản phẩm bán<span> @{ float demsosp = (float)Model.Sum(t => t.SoLuong);}@demsosp  </span><div class="clearfix"></div></a></li>
                     </ul>
                 </nav>
@@ -157,7 +170,7 @@
                                         @item.SoLuong
                                     </td>
                                     <td>
-                                        @item.Spham.Gia
+                                        @{ float gia = (float)item.Spham.Gia;} @gia.ToString("#,##0")
                                     </td>
                                     <td>
                                         @{ float thanhtien = (float)item.ThanhTien;} @thanhtien.ToString("#,##0")
