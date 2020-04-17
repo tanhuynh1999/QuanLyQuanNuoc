@@ -2,6 +2,11 @@
 @model List<CTHD>
 
 @{
+    ThaiHoaiDu.Models.NguoiDung nd = (ThaiHoaiDu.Models.NguoiDung)Session["TaiKhoan"];
+    if (nd.VaiTro == false && nd != null)
+    {
+        Response.Redirect("/QuanLy/Index");
+    }
     QuanLyQuanNuocEntities db = new QuanLyQuanNuocEntities();
     int demhd = 0;
     foreach (var item in db.HoaDons.ToList())

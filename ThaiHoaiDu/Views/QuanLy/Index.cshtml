@@ -5,6 +5,7 @@
     ThaiHoaiDu.Models.QuanLyQuanNuocEntities db = new ThaiHoaiDu.Models.QuanLyQuanNuocEntities();
     int banTrong = db.Bans.Where(t => t.TinhTrang == 1).ToList().Count;
     int banSD = db.Bans.Where(t => t.TinhTrang == 0).ToList().Count;
+    ThaiHoaiDu.Models.NguoiDung nd = (ThaiHoaiDu.Models.NguoiDung)Session["TaiKhoan"];
     DateTime dat = DateTime.Now;
     float dthungay = (float)db.HoaDons.Where(t => t.GioRa.Value.Day == dat.Day && t.GioRa.Value.Month == dat.Month && t.GioRa.Value.Year == dat.Year && t.GioRa != null).ToList().Sum(t => t.TongTien);
 }
@@ -49,7 +50,7 @@
                             <h3>Tổng doanh thu 1 ngày</h3>
                             <h4 id="hvn" style="font-size: 30px">
                             </h4>
-                            <p style="font-size: 17px">@dthungay.ToString("#,##0") vnđ.</p>
+                            <p style="font-size: 17px">@if (nd.VaiTro == true && nd != null) { @dthungay.ToString("#,##0");} vnđ.</p>
                         </div>
                         <div class="clearfix"></div>
                     </div>

@@ -160,7 +160,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </a>
                                     <ul class="dropdown-menu drp-mnu">
                                         @*<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
-                                        <li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li>*@
+                                <li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li>*@
                                         <li> <a href="@Url.Action("DangXuat", "DangNhap")"><i class="fa fa-sign-out"></i> Logout</a> </li>
                                     </ul>
                                 </li>
@@ -192,6 +192,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     @RenderBody()
                 </div>
                 <!--inner block end here-->
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Cảnh báo</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Bạn không đủ quyền để truy cập
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!--copy rights start here-->
                 <div class="copyrights">
 

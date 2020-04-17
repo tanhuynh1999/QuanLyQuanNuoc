@@ -7,7 +7,8 @@
     var f = "Trống";
     var incont = "fas fa-caret-square-up";
     var inconf = "fas fa-caret-square-down";
- }
+    NguoiDung nd = (NguoiDung)Session["TaiKhoan"];
+}
 <div class="chit-chat-layer1" style="margin-top: -5%">
     <!--inner block start here-->
     <div class="inner-block">
@@ -16,8 +17,20 @@
                 <a href="@Url.Action("Index", "QuanLy", new { id = 0 })" class="btn btn-default"><i class="fas fa-book-medical">&nbsp;</i>Tất cả</a>
                 <a href="@Url.Action("Index", "QuanLy", new { id = 1 })" class="btn btn-default"><i class="fas fa-angle-up">&nbsp;</i>Có khách</a>
                 <a href="@Url.Action("Index", "QuanLy", new { id = 2 })" class="btn btn-default"><i class="fas fa-angle-down">&nbsp;</i>Trống</a>
-                <a href="/NhatKi/Index" class="btn btn-default"><i class="fas fa-book">&nbsp;</i>Nhật ký</a>
-                <a href="@Url.Action("Index", "ThongKe")" class="btn btn-default"><i class="fas fa-chart-line">&nbsp;</i>Thống kê</a>
+                @if (nd.VaiTro == true && nd != null)
+                {
+                    <a href="/NhatKi/Index" class="btn btn-default"><i class="fas fa-book">&nbsp;</i>Nhật ký</a>
+                    <a href="@Url.Action("Index", "ThongKe")" class="btn btn-default"><i class="fas fa-chart-line">&nbsp;</i>Thống kê</a>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Nhật ký
+                    </button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Thống kê
+                    </button>
+                }
                 <a href="#" class="btn btn-danger"><i class="fab fa-audible">&nbsp;</i>Hướng dẫn</a>
             </center>
             <div class="clearfix"></div><br />
@@ -33,7 +46,12 @@
                         </div>
                         <div class="produ-cost" style="background-color:@if (item.TinhTrang == 0) { @xanhLa; } else { @den; }; border: 1px solid black;">
                             <h4 style="font-weight: bold;">Bàn @item.SoBan</h4>
-                            <h4><b><i class="@if (item.TinhTrang == 0) { @incont; } else { @inconf; }">&nbsp;</i></b>@if (item.TinhTrang == 0){@t;}else{ @f;}</h4>
+                            <h4><b><i class="@if (item.TinhTrang == 0) { @incont; } else { @inconf; }">&nbsp;</i></b>@if (item.TinhTrang == 0)
+                            {@t;
+                        }
+                        else
+                        { @f;
+                    }</h4>
                         </div>
                     </div>
                 </div>
