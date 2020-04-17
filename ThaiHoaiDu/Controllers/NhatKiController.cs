@@ -22,21 +22,25 @@ namespace ThaiHoaiDu.Controllers
             if (id == 1)
             {
                 ViewBag.ID = "tuần";
+                ViewBag.Tien = db.CTHDs.Where(t => DbFunctions.DiffDays(t.HoaDon.GioRa, dat) <= 7 && t.HoaDon.GioRa != null).ToList().Sum(t => t.ThanhTien);
                 return PartialView(db.CTHDs.Where(t => DbFunctions.DiffDays(t.HoaDon.GioRa, dat) <= 7 && t.HoaDon.GioRa != null).OrderByDescending(t => t.HoaDon.GioRa).ToPagedList(pagenum, 10));
             }
             else if (id == 2)
             {
                 ViewBag.ID = "tháng";
+                ViewBag.Tien = db.CTHDs.Where(t => t.HoaDon.GioRa.Value.Month == dat.Month && t.HoaDon.GioRa.Value.Year == dat.Year && t.HoaDon.GioRa != null).ToList().Sum(t => t.ThanhTien);
                 return PartialView(db.CTHDs.Where(t => t.HoaDon.GioRa.Value.Month == dat.Month && t.HoaDon.GioRa.Value.Year == dat.Year && t.HoaDon.GioRa != null).OrderByDescending(t => t.HoaDon.GioRa).ToPagedList(pagenum, 10));
             }
             else if (id == 3)
             {
                 ViewBag.ID = "tất cả";
+                ViewBag.Tien = db.CTHDs.ToList().Sum(t => t.ThanhTien);
                 return PartialView(db.CTHDs.OrderByDescending(t => t.HoaDon.GioRa).ToPagedList(pagenum, 10));
             }
             ViewBag.id = 0;
             ViewBag.ID = "ngày";
-            return PartialView(db.CTHDs.Where(t => DbFunctions.DiffDays(t.HoaDon.GioRa, dat) <= 1 && t.HoaDon.GioRa != null).OrderByDescending(t => t.HoaDon.GioRa).ToPagedList(pagenum, 10));
+            ViewBag.Tien = db.CTHDs.Where(t => t.HoaDon.GioRa.Value.Day == dat.Day && t.HoaDon.GioRa.Value.Month == dat.Month && t.HoaDon.GioRa.Value.Year == dat.Year && t.HoaDon.GioRa != null).ToList().Sum(t => t.ThanhTien);
+            return PartialView(db.CTHDs.Where(t => t.HoaDon.GioRa.Value.Day == dat.Day && t.HoaDon.GioRa.Value.Month == dat.Month && t.HoaDon.GioRa.Value.Year == dat.Year && t.HoaDon.GioRa != null).OrderByDescending(t => t.HoaDon.GioRa).ToPagedList(pagenum, 10));
         }
     }
 

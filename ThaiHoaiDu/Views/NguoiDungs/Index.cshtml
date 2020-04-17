@@ -8,7 +8,6 @@
     {
         Response.Redirect("/QuanLy/Index");
     }
-    int idxoa = new int();
 }
 <div class="inner-block">
     <div class="product-block">
@@ -65,10 +64,8 @@
                             @Html.DisplayFor(modelItem => item.NgayTao)
                         </td>
                         <td>
-                            <a href="@Url.Action("Edit", "NguoiDungs", new { id = item.MaNguoiDung})" class="btn btn-default"><i class="fas fa-redo-alt">&nbsp;</i>Cập nhật</a>
-                            <button type="button" class="btn btn-danger" name="bt" id="@item.MaNguoiDung" onclick="@{idxoa = item.MaNguoiDung; })" data-toggle="modal" data-target="#Xoa">
-                                Xóa
-                            </button>
+                            <a href="/NguoiDungs/Edit/@item.MaNguoiDung" class="btn btn-default"><i class="fas fa-redo-alt">&nbsp;</i>Cập nhật</a>
+                            <a class="btn btn-danger delete" data-controller="NguoiDungs" data-action="DeleteConfirmed" data-id="@item.MaNguoiDung" data-body-message="Bạn chắc chắn muốn xóa">Xóa</a>
                         </td>
                     </tr>
                 }
@@ -79,20 +76,4 @@
 </div>
 
 
-
-<div class="modal fade" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
-            </div>
-            <div class="modal-body">
-                Bạn chắc chắn muốn xóa?
-            </div>
-            <div class="modal-footer">
-                <a href="@Url.Action("DeleteConfirmed","NguoiDungs", new { id = idxoa})"><button type="button" class="btn btn-secondary">OK</button></a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Trờ về</button>
-            </div>
-        </div>
-    </div>
-</div>
+<script src="~/Content/Layout/js/DeleteConfirm.js"></script>

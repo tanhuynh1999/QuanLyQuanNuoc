@@ -53,7 +53,7 @@ namespace ThaiHoaiDu.Controllers
                 nguoiDung.NgayTao = DateTime.Now;
                 db.NguoiDungs.Add(nguoiDung);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/NguoiDungs/Index");
             }
 
             return View(nguoiDung);
@@ -85,7 +85,7 @@ namespace ThaiHoaiDu.Controllers
             {
                 db.Entry(nguoiDung).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/NguoiDungs/Index");
             }
             return View(nguoiDung);
         }
