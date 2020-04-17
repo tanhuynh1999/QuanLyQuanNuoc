@@ -1,6 +1,11 @@
 ﻿@model ThaiHoaiDu.Models.DanhMuc
 
 @{
+    ThaiHoaiDu.Models.NguoiDung nd = (ThaiHoaiDu.Models.NguoiDung)Session["TaiKhoan"];
+    if (nd != null && nd.VaiTro == false)
+    {
+        Response.Redirect("/QuanLy/Index");
+    }
     ViewBag.Title = "Edit";
     Layout = "~/Views/Layout/QuanLy.cshtml";
 }
