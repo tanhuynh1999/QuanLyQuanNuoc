@@ -9,31 +9,38 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Layout/QuanLy.cshtml";
 }
+<div class="inner-block">
+    <div class="product-block">
+        <div class="pro-head" style="width: 100%; height: 500px">
+            <p>
+                <a href="/DanhMucs/Create" class="btn btn-danger">THÊM DANH MỤC</a>
+            </p>
+            <br />
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>
+                        <b><i class="fas fa-align-justify">&nbsp;</i>Danh mục</b>
+                    </th>
+                    <th style="text-align: center">
+                        <b><i class="fas fa-eraser">&nbsp;</i>Công cụ</b>
+                    </th>
+                </tr>
 
-<h2>Index</h2>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenDanhMuc)
+                        </td>
+                        <td style="text-align: center">
+                            @Html.ActionLink("Sửa", "edit", new { id = item.MaDanhMuc }) |
+                            <a class="btn btn-danger delete" data-id="@item.MaDanhMuc" data-controller="DanhMucs" data-action="DeleteConfirmed" data-body-message="bạn chắc chắn muôn xóa">Xóa</a>
+                        </td>
+                    </tr>
+                }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TenDanhMuc)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenDanhMuc)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaDanhMuc }) |
-            <a class="btn btn-danger delete" data-id="@item.MaDanhMuc" data-controller="DanhMucs" data-action="DeleteConfirmed" data-body-message="bạn chắc chắn muôn xóa">Xóa</a>
-        </td>
-    </tr>
-}
-
-</table>
+            </table>
+        </div>
+    </div>
+</div>
 <script src="~/Content/Layout/js/DeleteConfirm.js"></script>

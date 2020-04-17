@@ -141,6 +141,7 @@
     <Compile Include="Controllers\QuanLyController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\ThemMonController.cs" />
+    <Compile Include="Controllers\ThongBao_HienThiController.cs" />
     <Compile Include="Controllers\ThongKeController.cs" />
     <Compile Include="DAO\banDAO.cs" />
     <Compile Include="Global.asax.cs">
@@ -2014,6 +2015,7 @@
     <Content Include="Views\DanhMucs\Create.cshtml" />
     <Content Include="Views\DanhMucs\Edit.cshtml" />
     <Content Include="Views\DanhMucs\Index.cshtml" />
+    <Content Include="Views\ThongBao_HienThi\HuongDan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
