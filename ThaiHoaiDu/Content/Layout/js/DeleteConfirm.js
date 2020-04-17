@@ -9,14 +9,14 @@
                         <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Warning</h4>
+                            <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
                         </div>
                         <div class="modal-body delete-modal-body">
                             
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal" id="cancel-delete">Cancel</button>
-                            <button type="button" class="btn btn-danger" id="confirm-delete">Delete</button>
+                            <button type="button" class="btn btn-danger" id="confirm-delete"">Xóa</button>
                         </div>
                         </div>
                     </div>

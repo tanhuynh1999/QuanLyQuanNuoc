@@ -23,8 +23,8 @@
 }
     <div class="dygno">
         <h2 style="margin-left: 20%">Thống kê Năm</h2>
-        <div style="width: 20px; height: 20px; background-color:#337AB7"></div>Số hóa đơn trong 1 bàn
-        <div style="width: 20px; height: 20px; background-color:#929292"></div>Số khách đã dùng nước
+        <div style="width: 20px; height: 20px; background-color:#337AB7"></div>Số hóa đơn
+        <div style="width: 20px; height: 20px; background-color:#929292"></div>Số Nước khách dùng
         <canvas id="doughnutnam" height="300" width="470" style="width: 470px; height: 300px;"></canvas>
         <h2 style="color: black; margin-left: 15%">Doanh thu: <b style="color: red">@{ float thanhtien = (float)Model.Sum(t => t.ThanhTien);} @thanhtien.ToString("#,##0")</b> VNĐ</h2>
         <script>
@@ -51,7 +51,7 @@
                     List<CTHD> sp = Model.Where(t => t.Spham.MaSanPham == maSP).ToList();
                     foreach (var ktem in sp)
                     {
-                        <span>@item.TenSanPham: @sp.Sum(t => t.SoLuong)</span><br />
+                        <span><span style="color: brown">@item.TenSanPham:</span> <b>@sp.Sum(t => t.SoLuong)</b></span><br />
                         break;
                     }
                     break;
