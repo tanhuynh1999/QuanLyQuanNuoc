@@ -16,12 +16,27 @@
         }
     }
 }
-<div>
-    <span>Tiền thu trong ngày: @{ float thanhtien = (float)Model.Sum(t => t.ThanhTien);} @thanhtien.ToString("#,##0")</span><br />
-    <span>1Hóa đơn/1bàn trong ngày: @demhd</span><br />
 
-    <span>1 khách/ 1 đồ dùng trong ngày: @Model.Sum(t => t.SoLuong)</span><br />
-    <span>Sản phẩm đã sử dụng: </span><br />
+<div class="dygno">
+    <h2 style="margin-left: 20%">Thống kê Tuần</h2>
+    <div style="width: 20px; height: 20px; background-color:#337AB7"></div>Số hóa đơn trong 1 bàn
+    <div style="width: 20px; height: 20px; background-color:#929292"></div>Số khách đã dùng nước
+    <canvas id="doughnuttuan" height="300" width="470" style="width: 470px; height: 300px;"></canvas>
+    <h2 style="color: black; margin-left: 15%">Doanh thu: <b style="color: red">@{ float thanhtien = (float)Model.Sum(t => t.ThanhTien);} @thanhtien.ToString("#,##0")</b> VNĐ</h2>
+    <script>
+		var doughnutData = [
+		{
+		value: @demhd,
+		color:"#337AB7"
+		},
+		{
+		value : @Model.Sum(t => t.SoLuong),
+		color : "#929292"
+		},
+		];
+		new Chart(document.getElementById("doughnuttuan").getContext("2d")).Doughnut(doughnutData);
+    </script>
+    <b>Số lượng nước đã bán:</b><br />
     @foreach (var item in db.Sphams.ToList())
     {
         foreach (var jtem in Model)
