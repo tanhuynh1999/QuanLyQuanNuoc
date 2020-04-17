@@ -3,7 +3,7 @@
 
 @{
     ThaiHoaiDu.Models.NguoiDung nd = (ThaiHoaiDu.Models.NguoiDung)Session["TaiKhoan"];
-    if (nd.VaiTro == false && nd != null)
+    if (nd != null && nd.VaiTro == false)
     {
         Response.Redirect("/QuanLy/Index");
     }

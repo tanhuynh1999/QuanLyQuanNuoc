@@ -1,6 +1,11 @@
 ﻿@using ThaiHoaiDu.DAO;
 @model List<banDAO>
 @{
+    ThaiHoaiDu.Models.NguoiDung nd = (ThaiHoaiDu.Models.NguoiDung)Session["TaiKhoan"];
+    if(nd != null && nd.VaiTro == false)
+    {
+        Response.Redirect("/QuanLy/Index");
+    }
     ViewBag.Title = "Index";
     Layout = "~/Views/Layout/QuanLy.cshtml";
 }

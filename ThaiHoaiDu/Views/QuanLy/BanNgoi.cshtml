@@ -17,7 +17,7 @@
                 <a href="@Url.Action("Index", "QuanLy", new { id = 0 })" class="btn btn-default"><i class="fas fa-book-medical">&nbsp;</i>Tất cả</a>
                 <a href="@Url.Action("Index", "QuanLy", new { id = 1 })" class="btn btn-default"><i class="fas fa-angle-up">&nbsp;</i>Có khách</a>
                 <a href="@Url.Action("Index", "QuanLy", new { id = 2 })" class="btn btn-default"><i class="fas fa-angle-down">&nbsp;</i>Trống</a>
-                @if (nd.VaiTro == true && nd != null)
+                @if (nd != null && nd.VaiTro == true)
                 {
                     <a href="/NhatKi/Index" class="btn btn-default"><i class="fas fa-book">&nbsp;</i>Nhật ký</a>
                     <a href="@Url.Action("Index", "ThongKe")" class="btn btn-default"><i class="fas fa-chart-line">&nbsp;</i>Thống kê</a>
