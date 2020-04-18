@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ThaiHoaiDu.Models.Ban>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/QuanLy.cshtml";
+    ThaiHoaiDu.Models.NguoiDung nd = (ThaiHoaiDu.Models.NguoiDung)Session["TaiKhoan"];
+    if(nd != null && nd.VaiTro == false)
+    {
+        Response.Redirect("/QuanLy/Index");
+    }
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SoBan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TinhTrang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HienTrang)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @if (item.SoBan == 0)
+            {
+                <p>Đem về</p>
+            }
+            else
+            {
+                <p>Bàn @item.SoBan</p>
+            }
+        </td>
+        <td>
+            @if(item.TinhTrang == 1)
+            {
+                <p>Không có khách</p>
+            }
+            else
+            {
+                <p>Có khách</p>
+            }
+        </td>
+        <td>
+            @if(item.HienTrang == true)
+            {
+                <p>Còn sử dụng</p>
+            }
+            else
+            {
+                <p>Ngưng sử dụng</p>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaBan }) 
+        </td>
+    </tr>
+}
+
+</table>

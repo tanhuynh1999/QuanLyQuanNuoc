@@ -45,13 +45,22 @@
                             <img class="img-responsive" src="~/Content/Layout/images/table-1928456_960_720.png" alt="" style="height: 150px">
                         </div>
                         <div class="produ-cost" style="background-color:@if (item.TinhTrang == 0) { @xanhLa; } else { @den; }; border: 1px solid black;">
-                            <h4 style="font-weight: bold;">Bàn @item.SoBan</h4>
-                            <h4><b><i class="@if (item.TinhTrang == 0) { @incont; } else { @inconf; }">&nbsp;</i></b>@if (item.TinhTrang == 0)
-                            {@t;
+                            @if (item.SoBan == 0)
+                            {
+                                <h4 style="font-weight: bold;">Đem về</h4>
+                            }
+                            else
+                            {
+                                <h4 style="font-weight: bold;">Bàn @item.SoBan</h4>
+                            }
+                            <h4>
+                                <b><i class="@if (item.TinhTrang == 0) { @incont; } else { @inconf; }">&nbsp;</i></b>@if (item.TinhTrang == 0)
+                                {@t;
+                            }
+                            else
+                            { @f;
                         }
-                        else
-                        { @f;
-                    }</h4>
+                            </h4>
                         </div>
                     </div>
                 </div>

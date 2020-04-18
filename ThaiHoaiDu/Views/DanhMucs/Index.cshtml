@@ -34,7 +34,14 @@
                         </td>
                         <td style="text-align: center">
                             @Html.ActionLink("Sửa", "edit", new { id = item.MaDanhMuc }) |
-                            <a class="btn btn-danger delete" data-id="@item.MaDanhMuc" data-controller="DanhMucs" data-action="DeleteConfirmed" data-body-message="bạn chắc chắn muôn xóa">Xóa</a>
+                            @if (item.Sphams.Count == 0)
+                            {
+                                <a class="btn btn-danger delete" data-id="@item.MaDanhMuc" data-controller="DanhMucs" data-action="DeleteConfirmed" data-body-message="bạn chắc chắn muôn xóa">Xóa</a>
+                            }
+                            else
+                            {
+                                <input type="button" class="btn btn-danger" value="Xóa" disabled>
+                            }
                         </td>
                     </tr>
                 }

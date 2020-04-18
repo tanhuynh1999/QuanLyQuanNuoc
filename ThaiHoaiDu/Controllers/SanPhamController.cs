@@ -59,6 +59,7 @@ namespace ThaiHoaiDu.Controllers
                 else
                     fileimg.SaveAs(pathimg);
                 spham.Anh = fileimg.FileName;
+                spham.HienTrang = true;
                 db.Sphams.Add(spham);
                 db.SaveChanges();
                 return RedirectToAction("Index");

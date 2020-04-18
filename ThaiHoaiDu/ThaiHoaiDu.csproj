@@ -134,6 +134,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BansController.cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\DanhMucsController.cs" />
     <Compile Include="Controllers\NguoiDungsController.cs" />
@@ -2016,6 +2017,9 @@
     <Content Include="Views\DanhMucs\Edit.cshtml" />
     <Content Include="Views\DanhMucs\Index.cshtml" />
     <Content Include="Views\ThongBao_HienThi\HuongDan.cshtml" />
+    <Content Include="Views\Bans\Create.cshtml" />
+    <Content Include="Views\Bans\Edit.cshtml" />
+    <Content Include="Views\Bans\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

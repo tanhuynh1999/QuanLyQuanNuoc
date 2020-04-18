@@ -39,15 +39,22 @@
                             </div>
 
                             <div class="produ-cost">
-                                <h4>@item.TenSanPham</h4>
+                                @if (item.HienTrang == true)
+                                {
+                                    <h4>@item.TenSanPham</h4>
+                                }
+                                else
+                                {
+                                    <h4>@item.TenSanPham - Ngưng bán</h4>
+                                }
                                 <h5>
                                     @{ float giaban = (float)item.Gia;}
                                     @giaban.ToString("#,##0") vnđ/@if (item.PhanBiet == true)
                                     {@lon;
-                                    }
-                                    else
-                                    {@ly;
-                                    }
+                                }
+                                else
+                                {@ly;
+                            }
                                 </h5>
                             </div>
                             <center>

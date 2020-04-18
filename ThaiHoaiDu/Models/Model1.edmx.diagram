@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fcfdffa6d6de4e11a56c8dd59b9834c8" Name="Diagram1">
+      <Diagram DiagramId="60f54356d21c4f78886624ce19d99916" Name="Diagram1">
         <EntityTypeShape EntityType="QuanLyQuanNuocModel.Ban" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanNuocModel.CTHD" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanNuocModel.DanhMuc" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanNuocModel.CTHD" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanNuocModel.DanhMuc" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyQuanNuocModel.HoaDon" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyQuanNuocModel.NguoiDung" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyQuanNuocModel.Spham" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />

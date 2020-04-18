@@ -26,6 +26,7 @@ namespace ThaiHoaiDu.Models
         public string Anh { get; set; }
         public Nullable<bool> PhanBiet { get; set; }
         public Nullable<int> MaDanhMuc { get; set; }
+        public Nullable<bool> HienTrang { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTHD> CTHDs { get; set; }

@@ -12,6 +12,7 @@
           <Property Name="MaBan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SoBan" Type="int" />
           <Property Name="TinhTrang" Type="int" />
+          <Property Name="HienTrang" Type="bit" />
         </EntityType>
         <EntityType Name="CTHD">
           <Key>
@@ -62,6 +63,7 @@
           <Property Name="Anh" Type="nvarchar(max)" />
           <Property Name="PhanBiet" Type="bit" />
           <Property Name="MaDanhMuc" Type="int" />
+          <Property Name="HienTrang" Type="bit" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -158,6 +160,7 @@
           <Property Name="MaBan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SoBan" Type="Int32" />
           <Property Name="TinhTrang" Type="Int32" />
+          <Property Name="HienTrang" Type="Boolean" />
           <NavigationProperty Name="HoaDons" Relationship="Self.FK_HoaDon_Ban" FromRole="Ban" ToRole="HoaDon" />
         </EntityType>
         <EntityType Name="CTHD">
@@ -214,6 +217,7 @@
           <Property Name="Anh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PhanBiet" Type="Boolean" />
           <Property Name="MaDanhMuc" Type="Int32" />
+          <Property Name="HienTrang" Type="Boolean" />
           <NavigationProperty Name="CTHDs" Relationship="Self.FK_CTHD_Spham" FromRole="Spham" ToRole="CTHD" />
           <NavigationProperty Name="DanhMuc" Relationship="Self.FK_Spham_DanhMuc" FromRole="Spham" ToRole="DanhMuc" />
         </EntityType>
@@ -312,6 +316,7 @@
                 <ScalarProperty Name="MaBan" ColumnName="MaBan" />
                 <ScalarProperty Name="SoBan" ColumnName="SoBan" />
                 <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="HienTrang" ColumnName="HienTrang" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -366,6 +371,7 @@
                 <ScalarProperty Name="Anh" ColumnName="Anh" />
                 <ScalarProperty Name="PhanBiet" ColumnName="PhanBiet" />
                 <ScalarProperty Name="MaDanhMuc" ColumnName="MaDanhMuc" />
+                <ScalarProperty Name="HienTrang" ColumnName="HienTrang" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

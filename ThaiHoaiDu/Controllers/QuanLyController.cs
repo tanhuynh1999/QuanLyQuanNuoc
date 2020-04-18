@@ -23,15 +23,15 @@ namespace ThaiHoaiDu.Controllers
         {
             if(id == 0)
             {
-                return PartialView(db.Bans.OrderBy(n => n.SoBan).ToList());
+                return PartialView(db.Bans.Where(t => t.HienTrang == true).OrderBy(n => n.SoBan).ToList());
             }
             if(id == 1)
             {
-                return PartialView(db.Bans.Where(t => t.TinhTrang == 0).OrderBy(n => n.SoBan).ToList());
+                return PartialView(db.Bans.Where(t => t.TinhTrang == 0 && t.HienTrang == true).OrderBy(n => n.SoBan).ToList());
             }   
             if(id == 2)
             {
-                return PartialView(db.Bans.Where(t => t.TinhTrang == 1).OrderBy(n => n.SoBan).ToList());
+                return PartialView(db.Bans.Where(t => t.TinhTrang == 1 && t.HienTrang == true).OrderBy(n => n.SoBan).ToList());
             }
             return PartialView();
         }
