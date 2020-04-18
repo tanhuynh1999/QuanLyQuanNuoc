@@ -161,7 +161,14 @@
                                         @item.MaHD
                                     </td>
                                     <td class="hidden-xs">
-                                        @item.HoaDon.Ban.SoBan
+                                        @if(item.HoaDon.Ban.SoBan == 0)
+                                        {
+                                            <p>Đem về</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Bàn @item.HoaDon.Ban.SoBan</p>
+                                        }
                                     </td>
                                     <td class="hidden-xs">
                                         @item.Spham.TenSanPham

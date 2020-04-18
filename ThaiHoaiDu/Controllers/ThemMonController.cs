@@ -26,9 +26,11 @@ namespace ThaiHoaiDu.Controllers
         {
             if(id == null || id == 0)
             {
-                return PartialView(db.Sphams.OrderBy(t => t.TenSanPham).ToList());
-            }    
-            return PartialView(db.Sphams.Where(t => t.MaDanhMuc == id).OrderBy(t => t.TenSanPham).ToList());
+                ViewBag.TBSP = "Tất cả";
+                return PartialView(db.Sphams.Where(t => t.HienTrang == true).OrderBy(t => t.TenSanPham).ToList());
+            }
+            ViewBag.TBSP = db.DanhMucs.Find(id).TenDanhMuc;
+            return PartialView(db.Sphams.Where(t => t.MaDanhMuc == id && t.HienTrang == true).OrderBy(t => t.TenSanPham).ToList());
         }
         public PartialViewResult locDM()
         {

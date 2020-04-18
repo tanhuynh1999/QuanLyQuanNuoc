@@ -89,7 +89,7 @@ namespace ThaiHoaiDu.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaSanPham,TenSanPham,Gia,Anh,PhanBiet,MaDanhMuc")] Spham spham, HttpPostedFileBase fileimg)
+        public ActionResult Edit([Bind(Include = "MaSanPham,TenSanPham,Gia,Anh,PhanBiet,MaDanhMuc,HienTrang")] Spham spham, HttpPostedFileBase fileimg)
         {
             if (ModelState.IsValid)
             {
