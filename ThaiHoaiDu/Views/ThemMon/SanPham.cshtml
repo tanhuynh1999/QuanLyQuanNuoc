@@ -6,7 +6,7 @@
 }
 <div class="inner-block" style="margin-top: -10%">
     <div class="product-block">
-        <div class="pro-head">
+        <div class="pro-head" style="width: 100%; height: 500px">
             <h2>Sản phẩm - @ViewBag.TBSP</h2>
             @Html.Action("locDM", "ThemMon")
             @foreach (var item in Model)
@@ -27,7 +27,7 @@
                             <img class="img-responsive" src="~/Content/Layout/images/@item.Anh" alt="" style="width: 100%; height: 210px; border-top: 1px solid black">
                         </div>
                         <div class="produ-cost" style="border: 1px solid black; background-color: darkgreen">
-                            <h4>@item.TenSanPham</h4>
+                            <h4 style="height: 50px; width: 100%">@item.TenSanPham</h4>
                             @{ float giaban = (float)item.Gia;}
                             <h5>@giaban.ToString("#,##0") vnđ/@if (item.PhanBiet == true)
                             {@lon;
@@ -44,5 +44,7 @@
 </div>
 <!--inner block end here-->
 <div class="clearfix"> </div>
+4
+
 
 

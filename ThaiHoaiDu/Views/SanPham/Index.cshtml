@@ -17,7 +17,7 @@
     <!--inner block start here-->
     <div class="inner-block">
         <div class="product-block">
-            <div class="pro-head">
+            <div class="pro-head" style="width: 100%; height: 500px">
                 <h2>Sản phẩm - @ViewBag.TBSP</h2>
                 <div style="margin-left: 3%">
                     <div class="col-lg-1">
@@ -40,11 +40,11 @@
                             <div class="produ-cost">
                                 @if (item.HienTrang == true)
                                 {
-                                    <h4>@item.TenSanPham</h4>
+                                    <h4 style="height: 50px; width: 100%">@item.TenSanPham</h4>
                                 }
                                 else
                                 {
-                                    <h4>@item.TenSanPham - Ngưng bán</h4>
+                                    <h4 style="height: 50px; width: 100%">@item.TenSanPham - Ngưng bán</h4>
                                 }
                                 <h5>
                                     @{ float giaban = (float)item.Gia;}
