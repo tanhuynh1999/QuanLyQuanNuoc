@@ -20,6 +20,10 @@ namespace ThaiHoaiDu.Controllers
             return View(db.Bans.ToList());
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
       
         // POST: Bans/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
