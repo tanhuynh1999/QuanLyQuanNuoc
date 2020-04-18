@@ -12,7 +12,7 @@
 
     <div class="inner-block">
         <div class="product-block">
-            <div class="pro-head" style="width: 100%; height: 500px">
+            <div class="pro-head" style="width: 100%; height: 1100px">
                 <p>
                     <a href="/Bans/Create" class="btn btn-danger">THÊM BÀN</a>
                 </p>
@@ -20,15 +20,17 @@
                 <table class="table">
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.SoBan)
+                            <b><i class="fas fa-receipt">&nbsp;</i>Số bàn</b>
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.TinhTrang)
+                            <b><i class="fas fa-adjust">&nbsp;</i>Tình trạng</b>
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.HienTrang)
+                            <b><i class="fas fa-box-tissue">&nbsp;</i>Hiện trạng</b>
                         </th>
-                        <th></th>
+                        <th>
+                            <b><i class="fas fa-eraser">&nbsp;</i>Công cụ</b>
+                        </th>
                     </tr>
 
                     @foreach (var item in Model)
@@ -65,7 +67,7 @@
                                 }
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.MaBan })
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.MaBan })
                             </td>
                         </tr>
                     }
@@ -74,8 +76,4 @@
             </div>
         </div>
     </div>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 

@@ -10,44 +10,54 @@
     }
 }
 
-<h2>Edit</h2>
+<div class="inner-block">
+    <div class="product-block">
+        <div class="pro-head" style="width: 100%; height: 500px">
+            <center style="font-weight: bold"><h3><a href="/Bans"><i class="fas fa-chevron-circle-left"></i>&nbsp;</a>Chỉnh sửa bàn</h3><a href=""></a></center>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.MaBan)
+                    @Html.HiddenFor(model => model.TinhTrang)
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Ban</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.MaBan)
-        @Html.HiddenFor(model => model.TinhTrang)
+                    <div class="alert alert-danger">
+                        <div class="form-group">
+                        <b class="control-label col-md-2"><i class="fas fa-receipt">&nbsp;</i>Số bàn</b>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SoBan, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SoBan, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.SoBan, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SoBan, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SoBan, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <div class="form-group">
+                        <b class="control-label col-md-2"><i class="fas fa-box-tissue">&nbsp;</i>Hiện trạng</b>
+                        <div class="col-md-10">
+                            <select class="form-control" name="HienTrang">
+                                <option value="true">Còn sử dụng</option>
+                                <option value="false">Ngưng sử dụng</option>
+                            </select>
+                        </div>
+                    </div>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.HienTrang, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <select class="form-control" name="HienTrang">
-                    <option value="true">Còn sử dụng</option>
-                    <option value="false">Ngưng sử dụng</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+                    <center>
+                        <div class="form-group">
+                            <div class="col-md-offset-1 col-md-10">
+                                <input type="submit" value="Save" class="btn btn-danger" style="width: 30%; height: 50px"/>
+                            </div>
+                        </div>
+                    </center>
+                </div>
+            }
         </div>
     </div>
-}
+</div>
+
+
+
 
 
